@@ -13,8 +13,9 @@ package org.usfirst.frc1073.Robot2015.subsystems;
 
 import org.usfirst.frc1073.Robot2015.RobotMap;
 import org.usfirst.frc1073.Robot2015.commands.*;
-import edu.wpi.first.wpilibj.can.*;
 
+import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.can.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
