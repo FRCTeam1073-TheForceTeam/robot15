@@ -9,15 +9,15 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc1073.Robot2015.commands;
+package org.usfirst.frc1073.robot15.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoGroup2Tote extends CommandGroup {
+public class AutoGroupR extends CommandGroup {
     
-    public  AutoGroup2Tote() {
+    public  AutoGroupR() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
