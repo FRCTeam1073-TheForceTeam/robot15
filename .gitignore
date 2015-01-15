@@ -8,13 +8,12 @@
 ~*
 
 #Other Various Files & Operating System 
-.classpath
 bin/
 
-.DS_STORE
-.Thumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-.localized
+	#OS related
+	.DS_STORE
+	.Thumbs.db
+	Desktop.ini
+	$RECYCLE.BIN/
+	.localized
 
-*.class
