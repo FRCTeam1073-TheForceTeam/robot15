@@ -38,13 +38,32 @@ public class  Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	float x = (float) Robot.oi.driver.getX();
-    	float y = (float) Robot.oi.driver.getY();
-    	float twist = (float) Robot.oi.driver.getTwist();
     	
+    	float x;
+    	float y;
+    	float twist;
+    	
+    	//These if statements are to establish a dead zone on the joystick
+    	if(Robot.oi.driver.getX() >= 0.05 || Robot.oi.driver.getX() <= -0.05){
+    		x = (float) Robot.oi.driver.getX();
+    	}
+    	else x = 0.0f;
+    	
+    	if(Robot.oi.driver.getY() >= 0.05 || Robot.oi.driver.getY() <= -0.05){
+    		y = (float) Robot.oi.driver.getY();
+    	}
+    	else y = 0.0f;
+    	
+		if(Robot.oi.driver.getTwist() >= 0.05 || Robot.oi.driver.getTwist() <= -0.05){
+			twist = (float) Robot.oi.driver.getTwist();
+		}
+		else twist = 0.0f;
+		
+		//For testing to print on smart dashboard 
     	SmartDashboard.putNumber("The x value is:", x);
     	SmartDashboard.putNumber("The y value is:", y);
     	SmartDashboard.putNumber("The twist value is:", twist);
+    	
     	Robot.driveTrain.move(x, y, twist);
 
     }
