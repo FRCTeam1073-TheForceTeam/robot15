@@ -16,4 +16,6 @@ bin/
 	Desktop.ini
 	$RECYCLE.BIN/
 	.localized
+	build/
+	dist/
 
