@@ -9,6 +9,8 @@
 
 #Other Various Files & Operating System 
 bin/
+build/
+dist/
 
 	#OS related
 	.DS_STORE
@@ -16,6 +18,5 @@ bin/
 	Desktop.ini
 	$RECYCLE.BIN/
 	.localized
-	build/
-	dist/
+
 
