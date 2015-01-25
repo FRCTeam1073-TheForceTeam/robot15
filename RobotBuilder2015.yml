@@ -72,8 +72,32 @@ Children:
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: Driver}
         Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
-            '13', '14', '15', '16']
+          choices: &id003 ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+            '12', '13', '14', '15', '16']
+          default: '1'
+          name: Button
+          validators: null
+          value: '4'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: &id004 [TypeDropdownSelected]
+          value: ResetGyroCommand
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id005 [whileHeld, whenPressed, whenReleased]
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: ResetGyro
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Driver}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id003
           default: '1'
           name: Button
           validators: null
@@ -82,10 +106,10 @@ Children:
           default: None
           name: Command
           type: Command
-          validators: [TypeDropdownSelected]
+          validators: *id004
           value: FieldRel
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: [whileHeld, whenPressed, whenReleased]
+          choices: *id005
           default: whileHeld
           name: When to Run
           validators: null
@@ -105,6 +129,14 @@ Children:
   Base: OI
   Name: Operator Interface
 - Children:
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: ResetGyroCommand
   - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
@@ -133,7 +165,7 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: /Users/nnapior/workspace,
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Patrick\workspace',
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ../}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
