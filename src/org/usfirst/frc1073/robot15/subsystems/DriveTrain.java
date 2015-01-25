@@ -44,11 +44,12 @@ public class DriveTrain extends Subsystem
     	isCubic = false;
     	drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
 		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+		gyro.reset(); //Resets gyro once so field relative has one 'true' North direction
     }
     
     public void setFieldRel(){
     	isFieldRel = !isFieldRel;
-    	gyro.reset();
+    	SmartDashboard.putBoolean("FieldRelative", isFieldRel);
     }
     
     /******************************************
@@ -80,7 +81,7 @@ public class DriveTrain extends Subsystem
     	SmartDashboard.putNumber("The front right val:", driveFrontRight.get());
     	SmartDashboard.putNumber("The back right val:", driveBackRight.get());
     	
-    	SmartDashboard.putNumber("Gyro value is:", gyro.getAngle());
+    	SmartDashboard.putNumber("Gyro value is:", Math.abs(gyro.getAngle() % 360)); //Sets the gyro values to always be positive and never go above 360 degrees
     	SmartDashboard.putNumber("The accelerometer x value is:", accelerometer.getX());
     	SmartDashboard.putNumber("The accelerometer y value is:", accelerometer.getY());
     }
@@ -94,6 +95,7 @@ public class DriveTrain extends Subsystem
     public void setCubic()
     {
     	isCubic = !isCubic;
+    	SmartDashboard.putBoolean("Cubic", isCubic);
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
