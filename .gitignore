@@ -12,6 +12,7 @@ bin/
 build/
 dist/
 *.class
+.classpath
 build\
 dist\
 \build\
