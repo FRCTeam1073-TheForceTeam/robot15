@@ -13,9 +13,10 @@ package org.usfirst.frc1073.robot15.subsystems;
 
 import org.usfirst.frc1073.robot15.RobotMap;
 import org.usfirst.frc1073.robot15.commands.*;
-import edu.wpi.first.wpilibj.*;
 
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -43,7 +44,9 @@ public class RangeFinder extends Subsystem
     }
     public double getDistance()
     {
-    	return(ultrasonic.getRangeInches());
+    	double dist = ultrasonic.getRangeInches();
+    	SmartDashboard.putNumber("RangeFinder Distance inches", dist);
+    	return(dist);
     }
 }
 
