@@ -12,6 +12,10 @@ bin/
 build/
 dist/
 *.class
+build\
+dist\
+\build\
+\dist\
 
 	#OS related
 	.DS_STORE
