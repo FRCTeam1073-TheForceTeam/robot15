@@ -35,7 +35,6 @@ public class  DriveAutonomous extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.move(0.0f, driveSpeed, 0.0f);
     }
 
     // Called repeatedly when this Command is scheduled to run
