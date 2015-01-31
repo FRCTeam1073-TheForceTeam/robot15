@@ -31,7 +31,12 @@ public class  ToteWheelsPurge extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    }
+    	Robot.toteCollector.wheelsPurge();
+    	// Robot.destroyPatriarchy();
+    	// boolean Errica.totalitarianDictatorship = true
+    	// boolean knowTacos = true
+    	// Nobody.saveNickFromThesePeople();
+    	}
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -44,10 +49,12 @@ public class  ToteWheelsPurge extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.toteCollector.wheelsOff();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
