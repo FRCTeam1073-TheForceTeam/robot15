@@ -82,12 +82,67 @@ Children:
           validators: [DigitalChannel]
           value: '1'
       Base: Ultrasonic
-      Name: Ultrasonic
+      Name: ultrasonic
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
     Base: Subsystem
     Name: RangeFinder
+  - Children:
+    - Children: []
+      Properties:
+        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: '2'
+          name: CAN ID
+          validators: *id002
+          value: '2'
+      Base: CAN Talon SRX
+      Name: toteCollectorTalon1
+    - Children: []
+      Properties:
+        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: '2'
+          name: CAN ID
+          validators: *id002
+          value: '7'
+      Base: CAN Talon SRX
+      Name: toteCollectorTalon2
+    Properties:
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+    Base: Subsystem
+    Name: ToteCollector
+  - Children: []
+    Properties:
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+    Base: Subsystem
+    Name: Transducer
+  - Children:
+    - Children: []
+      Properties:
+        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7']
+          default: '0'
+          name: Output Channel (Solenoid)
+          validators: [Solenoid]
+          value: '0'
+        Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+            '12', '13', '14', '15', '16', '17', '18', '19', '20']
+          default: '0'
+          name: Output PCM (Solenoid)
+          validators: [Solenoid]
+          value: '0'
+      Base: Solenoid
+      Name: totePucherSolenoid
+    Properties:
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+    Base: Subsystem
+    Name: TotePuncher
   Properties: {}
   Base: Subsystems
   Name: Subsystems
