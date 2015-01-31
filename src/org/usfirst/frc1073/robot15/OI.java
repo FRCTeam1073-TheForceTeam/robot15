@@ -99,8 +99,6 @@ public class OI
 
         SmartDashboard.putData("FieldRel", new FieldRel());
 
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
-
         SmartDashboard.putData("Drive", new Drive());
 
         SmartDashboard.putData("Elevate", new Elevate());
