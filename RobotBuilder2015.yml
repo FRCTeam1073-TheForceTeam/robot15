@@ -218,16 +218,6 @@ Children:
           value: '0'
       Base: Solenoid
       Name: binCollectorSolenoid
-    - Children: []
-      Properties:
-        CAN ID: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: '2'
-          name: CAN ID
-          validators: *id002
-          value: '8'
-      Base: CAN Talon SRX
-      Name: binCollectorTalon
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
@@ -297,6 +287,54 @@ Children:
     Base: Joystick
     Name: Driver
   - Children:
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Operator}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: '1'
+          name: Button
+          validators: null
+          value: '15'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id008
+          value: BinDrop
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id009
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: binDropButton
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Operator}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: '1'
+          name: Button
+          validators: null
+          value: '14'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id008
+          value: BinCollect
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id009
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+      Base: Joystick Button
+      Name: binCollectButton
     - Children: []
       Properties:
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
@@ -510,6 +548,22 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: ToteWheelsPurge
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: BinCollector}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: BinCollect
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: BinCollector}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: BinDrop
   Properties: {}
   Base: Commands
   Name: Commands
