@@ -23,7 +23,7 @@ public class AutonomousCommandGroup extends CommandGroup {
         //      addSequential(new Command2());
         // these will run in order.
     	
-    	
+    	addSequential(new DriveAutonomous());
 
         // To run multiple commands at the same time,
         // use addParallel()
