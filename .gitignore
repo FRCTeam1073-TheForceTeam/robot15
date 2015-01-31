@@ -9,20 +9,25 @@
 
 #Other Various Files & Operating System 
 bin/
+
 build/
-dist/
-*.class
-.classpath
-build\
-dist\
+/build/
 \build\
+build\
+
+dist/
+/dist/
+dist\
 \dist\
 
-	#OS related
-	.DS_STORE
-	.Thumbs.db
-	Desktop.ini
-	$RECYCLE.BIN/
-	.localized
+*.class
+.classpath
+
+#OS related
+.DS_STORE
+.Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.localized
 
 
