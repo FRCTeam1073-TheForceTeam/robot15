@@ -11,22 +11,15 @@
 
 package org.usfirst.frc1073.robot15.commands;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc1073.robot15.Robot;
-import org.usfirst.frc1073.robot15.RobotMap;
 
 /**
  *
  */
-public class  Elevate extends Command {
-	private int totesHeld = 0;
-	private int recentlyPressed = 0;
+public class Elevate extends Command {
 	private boolean newRound = true;
-    DigitalInput limitSwitch = RobotMap.elevatorlimitSwitch;
-    AnalogInput iRSensor = RobotMap.elevatorIRSensor;
+    boolean wasPressed = false;
     
     public Elevate() {
         // Use requires() here to declare subsystem dependencies
@@ -44,22 +37,18 @@ public class  Elevate extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(iRSensor.getValue() < 20 && newRound){
-    		totesHeld = 1;
+    	
+    	if(Robot.elevator.iRSensor.getValue() < 20 && newRound) {
+    		Robot.elevator.setTotesHeld(1);
     		newRound = false;
     	}
-    	// recentlyPressed may change depending on how often limit switch is polled as to not count
-    	// a raised tote multiple times in a single level change
-    	if(recentlyPressed > 50){
-    		if(limitSwitch.get()){
-    			totesHeld++;
-    			recentlyPressed = 0;
-    		}
-    	}
-    	else{
-    		recentlyPressed++;
-    	}
     	
+    	if (Robot.elevator.limitSwitch.get()) wasPressed = true;
+    	
+    	if (wasPressed && !Robot.elevator.limitSwitch.get()) {
+    		wasPressed = false;
+    		Robot.elevator.setTotesHeld(Robot.elevator.getTotesHeld() + 1);
+    	}
     	
     }
 
@@ -77,7 +66,4 @@ public class  Elevate extends Command {
     protected void interrupted() {
     }
     
-    public void newCollectionRound(){
-    	newRound = true;
-    }
 }
