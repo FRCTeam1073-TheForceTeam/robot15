@@ -13,9 +13,10 @@ package org.usfirst.frc1073.robot15.subsystems;
 
 import org.usfirst.frc1073.robot15.RobotMap;
 import org.usfirst.frc1073.robot15.commands.*;
-import edu.wpi.first.wpilibj.*;
 
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -38,6 +39,12 @@ public class TotePuncher extends Subsystem {
 	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void manipulateSolenoid(boolean on) {
+    	
+    	totePucherSolenoid.set(on);
+    	SmartDashboard.putBoolean("totePucherSolenoid", on);
     }
 }
 
