@@ -38,14 +38,14 @@ public class Elevate extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(Robot.elevator.iRSensor.getValue() < 20 && newRound) {
+    	if(Robot.elevator.getIrVal() < 20 && newRound) {
     		Robot.elevator.setTotesHeld(1);
     		newRound = false;
     	}
     	
-    	if (Robot.elevator.limitSwitch.get()) wasPressed = true;
+    	if (Robot.elevator.isSwitchHit()) wasPressed = true;
     	
-    	if (wasPressed && !Robot.elevator.limitSwitch.get()) {
+    	if (wasPressed && !Robot.elevator.isSwitchHit()) {
     		wasPressed = false;
     		Robot.elevator.setTotesHeld(Robot.elevator.getTotesHeld() + 1);
     	}
