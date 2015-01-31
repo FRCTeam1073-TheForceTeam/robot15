@@ -17,6 +17,7 @@ import org.usfirst.frc1073.robot15.commands.*;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -51,6 +52,8 @@ public class ToteCollector extends Subsystem {
     	else {
     		toteCollectorDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
     	}
+    	
+    	SmartDashboard.putBoolean("Tote Collector Collecting", collect);
     		
     }
 }
