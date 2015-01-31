@@ -42,5 +42,16 @@ public class ToteCollector extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void manipulateToteCollector(boolean collect) {
+    	
+    	if (collect == true) {
+    		toteCollectorDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    	}
+    	else {
+    		toteCollectorDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    	}
+    		
+    }
 }
 
