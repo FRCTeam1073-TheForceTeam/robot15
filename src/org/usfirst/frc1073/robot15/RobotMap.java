@@ -42,7 +42,7 @@ public class RobotMap {
     public static Solenoid elevatorelevatorLifter;
     public static AnalogInput elevatorirSensor;
     public static DigitalInput elevatorlimitSwitch;
-    public static DoubleSolenoid elevatorelevatorClamer;
+    public static DoubleSolenoid elevatorelevatorClamper;
     public static DoubleSolenoid binCollectorbinCollectorDoubleSolenoid;
     public static CANTalon binCollectorbinCollectorTalon;
 
@@ -90,8 +90,8 @@ public class RobotMap {
         elevatorlimitSwitch = new DigitalInput(2);
         LiveWindow.addSensor("Elevator", "limitSwitch", elevatorlimitSwitch);
         
-        elevatorelevatorClamer = new DoubleSolenoid(0, 6, 7);      
-        LiveWindow.addActuator("Elevator", "elevatorClamer", elevatorelevatorClamer);
+        elevatorelevatorClamper = new DoubleSolenoid(0, 6, 7);      
+        LiveWindow.addActuator("Elevator", "elevatorClamper", elevatorelevatorClamper);
         
         binCollectorbinCollectorDoubleSolenoid = new DoubleSolenoid(0, 3, 4);      
         LiveWindow.addActuator("BinCollector", "binCollectorDoubleSolenoid", binCollectorbinCollectorDoubleSolenoid);
