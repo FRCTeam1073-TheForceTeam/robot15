@@ -17,8 +17,10 @@ import org.usfirst.frc1073.robot15.Robot;
 /**
  *
  */
-public class  ToteElevatorCounter extends Command {
-
+public class ToteElevatorCounter extends Command {
+	private boolean newRound = true;
+    boolean wasPressed = false;
+    
     public ToteElevatorCounter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -35,6 +37,19 @@ public class  ToteElevatorCounter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	if(Robot.elevator.getIrVal() < 20 && newRound) {
+    		Robot.elevator.setTotesHeld(1);
+    		newRound = false;
+    	}
+    	
+    	if (Robot.elevator.isSwitchHit()) wasPressed = true;
+    	
+    	if (wasPressed && !Robot.elevator.isSwitchHit()) {
+    		wasPressed = false;
+    		Robot.elevator.setTotesHeld(Robot.elevator.getTotesHeld() + 1);
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,4 +65,5 @@ public class  ToteElevatorCounter extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+    
 }

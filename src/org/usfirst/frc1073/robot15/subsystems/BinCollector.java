@@ -52,6 +52,9 @@ public class BinCollector extends Subsystem {
     public void binLower(){
     	binCollectorTalon.set(-SPEED);
     }
+    public void binStop(){
+    	binCollectorTalon.set(0.0);
+    }
     
     public void close() {
     	binCollectorTalon.set(-1);
