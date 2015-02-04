@@ -336,7 +336,7 @@ Children:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: SendToDashboard}
     Base: Subsystem
-    Name: dashboard
+    Name: Dashboard
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -719,7 +719,7 @@ Children:
   - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: dashboard}
+        name: Requires, type: Subsystem, validators: null, value: Dashboard}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
