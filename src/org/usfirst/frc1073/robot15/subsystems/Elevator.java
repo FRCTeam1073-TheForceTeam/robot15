@@ -70,5 +70,18 @@ public class Elevator extends Subsystem {
     	return limitSwitch.get();
     }
     
+    public void rollersCollect()
+    {
+    	elevatorRollerTalon.set(0.7);
+    }
+    public void rollersPurge()
+    {
+    	elevatorRollerTalon.set(-0.7);
+    }
+    public void rollersOff()
+    {
+    	elevatorRollerTalon.set(0.0);
+    }
+    
 }
 
