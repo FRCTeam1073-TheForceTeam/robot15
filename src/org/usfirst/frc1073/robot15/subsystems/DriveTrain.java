@@ -89,7 +89,6 @@ public class DriveTrain extends Subsystem {
     }
     public void setCubic(){
     	isCubic = !isCubic;
-    	SmartDashboard.putBoolean("Cubic", isCubic);
     }
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -111,6 +110,13 @@ public class DriveTrain extends Subsystem {
     public double getGyroAngle()
     {
     	return(gyro.getAngle());
+    }
+    
+    public boolean isCubicDrive(){
+    	return isCubic;
+    }
+    public boolean isFieldRelative(){
+    	return isFieldRel;
     }
     
 }
