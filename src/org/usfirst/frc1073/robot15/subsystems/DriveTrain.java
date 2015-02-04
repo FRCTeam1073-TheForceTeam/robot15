@@ -34,8 +34,9 @@ public class DriveTrain extends Subsystem {
     public final float cubicConstant = (float) 0.12;
     BuiltInAccelerometer accelerometer = RobotMap.driveTrainaccelerometer;
     boolean isFieldRel = false;
-    public RobotDrive drive;
-    public boolean isCubic;
+    private RobotDrive drive;
+    private boolean isCubic;
+    private boolean isStraight;
     
     public DriveTrain(){
         drive = new RobotDrive(driveFrontLeft, driveBackLeft, driveFrontRight, driveBackRight);
@@ -65,6 +66,26 @@ public class DriveTrain extends Subsystem {
     		SmartDashboard.putNumber("Ramped X: ", x);
         	SmartDashboard.putNumber("Ramped Y: ", y);
     	}
+    	
+    	if (y != 0 && x == 0 && z == 0)
+    	{
+    		if(!isStraight)
+    		{
+    			gyro.reset();
+    			isStraight = true;
+    		}
+    		
+    		if(getGyroAngle() > .05)
+    		{
+    			z = 1;
+    		}
+    		if(getGyroAngle() < 359.95)
+    		{
+    			z = -1;
+    		}
+    	}
+    	else
+    		isStraight = false;
     	
     	if(!isFieldRel){
     		drive.mecanumDrive_Cartesian(x, y, z, 0); //0 is in place of gyro value for field relative
