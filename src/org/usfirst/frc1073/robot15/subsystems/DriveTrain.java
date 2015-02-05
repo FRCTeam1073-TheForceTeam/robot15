@@ -37,6 +37,8 @@ public class DriveTrain extends Subsystem {
     private RobotDrive drive;
     private boolean isCubic;
     private boolean isStraight;
+    private double gyroAngle;
+    private float twistCorrectionSpeed = 1;
     
     public DriveTrain(){
         drive = new RobotDrive(driveFrontLeft, driveBackLeft, driveFrontRight, driveBackRight);
@@ -71,17 +73,17 @@ public class DriveTrain extends Subsystem {
     	{
     		if(!isStraight)
     		{
-    			gyro.reset();
+    			gyroAngle = getGyroAngle();
     			isStraight = true;
     		}
     		
-    		if(getGyroAngle() > .05)
+    		if(getGyroAngle() > gyroAngle + 0.05)
     		{
-    			z = 1;
+    			z = twistCorrectionSpeed;
     		}
-    		if(getGyroAngle() < 359.95)
+    		if(getGyroAngle() < gyroAngle - 0.05 )
     		{
-    			z = -1;
+    			z = -twistCorrectionSpeed;
     		}
     	}
     	else
