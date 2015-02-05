@@ -22,6 +22,10 @@ public class OneToteAutonomousGroup extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
+    	
+    	//GRAB
+    	addSequential(new AutonomousTurn());
+    	addSequential(new DriveAutonomous());
 
         // To run multiple commands at the same time,
         // use addParallel()
