@@ -17,11 +17,9 @@ import org.usfirst.frc1073.robot15.Robot;
 /**
  *
  */
-public class  GrabAndGoAutonomous extends Command {
-	
-	private final int END_ANGLE = 120;
+public class  AutonomousTurn extends Command {
 
-    public GrabAndGoAutonomous() {
+    public AutonomousTurn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -36,27 +34,7 @@ public class  GrabAndGoAutonomous extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() 
-    {
-    	boolean isIt = false;
-    	
-    	//HAVE ROBOT GRAB TOTE/BARREL. NOT IMPLENTED YET SINCE NOTHING IS FINISHED
-    	while(!isIt)
-    	{
-    		Robot.driveTrain.move(0.0f, 0.0f, 1f);
-    		if(Robot.driveTrain.getGyroAngle() == END_ANGLE)
-    		{
-    			Robot.driveTrain.move(0.0f, 0.7f, 0.0f);
-    			
-    			if(Robot.rangeFinder.getDistance() > 25 )
-    			{
-    				isIt = false;
-    			}
-    		}
-    	}
-    	
-    	
-    	
+    protected void execute() {
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -70,8 +48,6 @@ public class  GrabAndGoAutonomous extends Command {
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() 
-    {
-    	end();
+    protected void interrupted() {
     }
 }
