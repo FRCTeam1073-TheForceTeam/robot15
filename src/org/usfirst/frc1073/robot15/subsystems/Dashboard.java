@@ -59,9 +59,9 @@ public class Dashboard extends Subsystem {
     }
 	public void sendData()
 	{
-		SmartDashboard.putInt("Driving Mode", CubicRel(Robot.driveTrain.isCubicDrive(), Robot.driveTrain.isFieldRelative()));
-		SmartDashboard.putInt("Tote Count", Robot.elevator.getTotesHeld());
-		SmartDashboard.putDouble("Distance Widget", Robot.rangeFinder.getDistance());
+		SmartDashboard.putNumber("Driving Mode", CubicRel(Robot.driveTrain.isCubicDrive(), Robot.driveTrain.isFieldRelative()));
+		SmartDashboard.putNumber("Tote Count", Robot.elevator.getTotesHeld());
+		SmartDashboard.putNumber("Distance Widget", Robot.rangeFinder.getDistance());
 	}
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
