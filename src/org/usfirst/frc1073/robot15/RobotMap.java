@@ -42,7 +42,8 @@ public class RobotMap {
     public static DigitalInput elevatorelevatorMagLow;
     public static DigitalInput elevatorelevatorMagMed;
     public static DigitalInput elevatorelevatorMagHight;
-    public static Solenoid elevatorelevatorLifterSolenoid;
+    public static Solenoid elevatorelevatorFirstStageSolenoid;
+    public static Solenoid elevatorelevatorSecondStageSolenoid;
     public static AnalogInput elevatorirSensor;
     public static DigitalInput elevatorlimitSwitch;
     public static CANTalon elevatorelevatorRollerTalon;
@@ -94,8 +95,11 @@ public class RobotMap {
         elevatorelevatorMagHight = new DigitalInput(5);
         LiveWindow.addSensor("Elevator", "elevatorMagHight", elevatorelevatorMagHight);
         
-        elevatorelevatorLifterSolenoid = new Solenoid(0, 5);
-        LiveWindow.addActuator("Elevator", "elevatorLifterSolenoid", elevatorelevatorLifterSolenoid);
+        elevatorelevatorFirstStageSolenoid = new Solenoid(0, 5);
+        LiveWindow.addActuator("Elevator", "elevatorFirstStageSolenoid", elevatorelevatorFirstStageSolenoid);
+        
+        elevatorelevatorSecondStageSolenoid = new Solenoid(1, 0);
+        LiveWindow.addActuator("Elevator", "elevatorSecondStageSolenoid", elevatorelevatorSecondStageSolenoid);
         
         elevatorirSensor = new AnalogInput(1);
         LiveWindow.addSensor("Elevator", "irSensor", elevatorirSensor);

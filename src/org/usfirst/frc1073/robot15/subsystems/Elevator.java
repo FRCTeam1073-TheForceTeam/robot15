@@ -28,7 +28,8 @@ public class Elevator extends Subsystem {
     DigitalInput elevatorMagLow = RobotMap.elevatorelevatorMagLow;
     DigitalInput elevatorMagMed = RobotMap.elevatorelevatorMagMed;
     DigitalInput elevatorMagHight = RobotMap.elevatorelevatorMagHight;
-    Solenoid elevatorLifterSolenoid = RobotMap.elevatorelevatorLifterSolenoid;
+    Solenoid elevatorFirstStageSolenoid = RobotMap.elevatorelevatorFirstStageSolenoid;
+    Solenoid elevatorSecondStageSolenoid = RobotMap.elevatorelevatorSecondStageSolenoid;
     AnalogInput irSensor = RobotMap.elevatorirSensor;
     DigitalInput limitSwitch = RobotMap.elevatorlimitSwitch;
     CANTalon elevatorRollerTalon = RobotMap.elevatorelevatorRollerTalon;
