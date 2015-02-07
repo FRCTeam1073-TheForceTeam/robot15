@@ -43,7 +43,24 @@ public class Elevator extends Subsystem {
     
     private int totesHeld = 0; // The number of totes in the robot
     private boolean MagPassed = true;
+    
     private int state = 0; // State of the elevator
+    /*********************
+     * 
+     * 0 = stopped
+     * 1 = piston out
+     * 3 = piston in
+     * 
+     *********************/
+    
+    private int stopPoint = 0;
+    /************************
+     * 
+     * 0 = stop at scoring platform
+     * 1 = put tote in stack in elevator
+     * 2 = stack on top of another tote
+     * 
+     ************************/
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -93,10 +110,78 @@ public class Elevator extends Subsystem {
     	elevatorRollerTalon.set(0.0);
     }
     
+    // Method to pull the elevator pistons in
     public void pistonIn(){
-    	testCompressorSolenoid.set(OPEN);
-    	testCompressorSolenoid.set(CLOSE);
-    	testExhaustSolenoid.set(OPEN);
+    	elevatorFirstStageSolenoid.set(OPEN);
+    	elevatorFirstStageSolenoid.set(CLOSE);
+    	elevatorSecondStageSolenoid.set(OPEN);
+    	state = 2;
+    }
+    
+    // Method to push the piston out
+    public void pistonOut(){
+    	elevatorSecondStageSolenoid.set(CLOSE);
+    	elevatorFirstStageSolenoid.set(OPEN);
+    	state = 1;
+    }
+    
+    // Method to stop the piston where it is
+    public void pistonStop(){
+    	elevatorFirstStageSolenoid.set(CLOSE);
+    	elevatorSecondStageSolenoid.set(CLOSE);
+    	state = 0;
+    }
+    
+    /*********************************************
+     * 
+     * Method to lift the tote with given Stop
+     * 
+     * @param howHigh tells which mag to stop at
+     * 0 = stop at scoring platform
+     * 1 = put tote in stack in elevator
+     * 2 = stack on top of another tote
+     * 
+     *********************************************/
+    public boolean liftTote(int howHigh){
+    	boolean theHeight;
+    	boolean done = false;
+    	stopPoint = howHigh;
+    	
+    	if(howHigh == 0) theHeight = elevatorMagLow.get();    // This is for the scoring platform
+    	if(howHigh == 1) theHeight = elevatorMagMed.get();    // This is for stacking the totes in the elevator
+    	else theHeight = elevatorMagHight.get();  // This is to stack on a tote that is already on platform
+    	
+    	if(!theHeight) MagPassed = false;
+    	if(!theHeight || !MagPassed){
+    		pistonStop();
+    		done = true;
+    	}
+    	else{
+    		pistonIn();
+    		done = false;
+    	}
+    	
+    	return done;
+    }
+    
+    // Method to stack totes in the robot
+    public void stackTotes(){
+    	
+    }
+
+    // Returns the state of elevator
+    public int getState(){
+    	return state;
+    }
+    
+    // Method to set the state with a given state
+    public void setState(int newState){
+    	state = newState;
+    }
+    
+    // Returns the stop point
+    public int getStopPoint(){
+    	return stopPoint;
     }
     
 }
