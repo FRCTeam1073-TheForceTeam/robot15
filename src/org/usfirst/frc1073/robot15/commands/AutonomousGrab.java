@@ -18,6 +18,8 @@ import org.usfirst.frc1073.robot15.Robot;
  *
  */
 public class  AutonomousGrab extends Command {
+	
+	private boolean didMove = false;
 
     public AutonomousGrab() {
         // Use requires() here to declare subsystem dependencies
@@ -34,7 +36,11 @@ public class  AutonomousGrab extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() 
+    {
+    	Robot.toteCollector.open();
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -15,18 +15,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class OneToteAutonomousGroup extends CommandGroup {
+public class AutonomousCommandGroupTwo extends CommandGroup {
     
-    public  OneToteAutonomousGroup() {
+    public  AutonomousCommandGroupTwo() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-    	
-    	//GRAB
-    	addSequential(new AutonomousBackup());
-    	addSequential(new AutonomousTurn());
-    	addSequential(new DriveAutonomous());
 
         // To run multiple commands at the same time,
         // use addParallel()
