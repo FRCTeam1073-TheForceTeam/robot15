@@ -81,7 +81,7 @@ public class Robot extends IterativeRobot {
         
        //choose autonomous
         chooser.addDefault("Drive Forward", new AutonomousCommandGroup());
-        chooser.addObject("GrabAndGo", new OneToteAutonomousGroup());
+        chooser.addObject("GrabAndGo", new AutonomousCommandGroupOne());
     }
 
     /**
