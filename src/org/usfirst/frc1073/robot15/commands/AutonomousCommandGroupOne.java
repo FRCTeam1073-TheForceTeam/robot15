@@ -22,6 +22,17 @@ public class AutonomousCommandGroupOne extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
+    	
+    	addSequential(new AutonomousToteOpen());
+    	addSequential(new AutonomousMoveToTote());
+    	addSequential(new AutonomousToteClose());
+    	addSequential(new AutonomousToteCollect());
+    	
+    	addSequential(new )
+    	addSequential(new AutonomousBackup());
+    	addSequential(new AutonomousTurn());
+    	addSequential(new DriveAutonomous());
+    	
 
         // To run multiple commands at the same time,
         // use addParallel()
