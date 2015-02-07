@@ -119,10 +119,14 @@ public class Elevator extends Subsystem {
     public void rollersOff(){
     	elevatorRollerTalon.set(0.0);
     }
+
+    /* 
+     * The sequence of solenoid transactions is significant. DO NOT reorder casually!!
+     */
     
     // Method to pull the elevator pistons in
     private void pistonIn(){
-    	elevatorFirstStageSolenoid.set(OPEN);
+//    	elevatorFirstStageSolenoid.set(OPEN);
     	elevatorFirstStageSolenoid.set(CLOSE);
     	elevatorSecondStageSolenoid.set(OPEN);
     	state = 2;
@@ -167,16 +171,19 @@ public class Elevator extends Subsystem {
     }
     
     // Method to move the elevator to a given position from any point
+    // Elevator magnet switch is -ve polarity, i.e. false = "at magnet position"
+    // Delete magPassed stuff - it doesn't add function
     public void move(int newGoTo){
     	goToPoint = newGoTo;
     	boolean theHeight;
     	if(goToPoint == stopPoint) pistonStop();
     	else if(goToPoint > stopPoint){
-    		pistonIn();
+    		pistonIn(); // Unnecessary
     		if(goToPoint == 1) theHeight = elevatorMagLow.get();    // This is for the scoring platform
         	if(goToPoint == 2) theHeight = elevatorMagMed.get();    // This is for stacking the totes in the elevator
         	else theHeight = elevatorMagHigh.get();  // This is to stack on a tote that is already on platform
         	
+        	// magPassed stores last stable value of theHeight, therefore also -ve polarity.
         	if(!theHeight) magPassed = false;
         	if(!theHeight || !magPassed){
         		pistonStop();
@@ -187,7 +194,7 @@ public class Elevator extends Subsystem {
         	}
     	}
     	else {
-    		pistonOut();
+    		pistonOut();	// Unnecessary
     		if(goToPoint == 2){
     			theHeight = elevatorMagMed.get();
     			
@@ -212,8 +219,8 @@ public class Elevator extends Subsystem {
             		pistonOut();
             	}
     		}
-    		else{
-    			pistonOut();
+    		else{	// goToPoint must have been 0
+    			pistonOut();	// No stop condition needed, stops when cylinder full
     			stopPoint = 0;
     		}
     	}
