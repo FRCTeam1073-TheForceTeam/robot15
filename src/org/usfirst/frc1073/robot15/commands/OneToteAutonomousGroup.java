@@ -24,7 +24,6 @@ public class OneToteAutonomousGroup extends CommandGroup {
         // these will run in order.
     	
     	//GRAB
-    	addSequential(new AutonomousBackup());
     	addSequential(new AutonomousTurn());
     	addSequential(new DriveAutonomous());
 
