@@ -28,7 +28,7 @@ public class AutonomousCommandGroupOne extends CommandGroup {
     	addSequential(new AutonomousToteClose());
     	addSequential(new AutonomousToteCollect());
     	
-    	addSequential(new )
+    	//addSequential(new )
     	addSequential(new AutonomousBackup());
     	addSequential(new AutonomousTurn());
     	addSequential(new DriveAutonomous());
