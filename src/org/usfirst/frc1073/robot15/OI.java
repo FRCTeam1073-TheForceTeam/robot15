@@ -59,7 +59,6 @@ public class OI
     public JoystickButton binCollectorButton;
     public JoystickButton binCollectorUpButton;
     public JoystickButton binCollectorDownButton;
-    public JoystickButton toteElevatorLifterButton;
     public JoystickButton totePuchButton;
     public JoystickButton toteArmsToggleButton;
     public JoystickButton toteCollectorPurgeButton;
@@ -81,8 +80,6 @@ public class OI
         toteArmsToggleButton.whenPressed(new ToteArmsToggle());
         totePuchButton = new JoystickButton(operator, 6);
         totePuchButton.whileHeld(new Puch());
-        toteElevatorLifterButton = new JoystickButton(operator, 1);
-        toteElevatorLifterButton.whileHeld(new ToteElevatorLifter());
         binCollectorDownButton = new JoystickButton(operator, 1);
         binCollectorDownButton.whileHeld(new BinCollectorDown());
         binCollectorUpButton = new JoystickButton(operator, 1);

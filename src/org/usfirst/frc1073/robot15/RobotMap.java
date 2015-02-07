@@ -41,13 +41,13 @@ public class RobotMap {
     public static Solenoid totePunchertotePucherSolenoid;
     public static DigitalInput elevatorelevatorMagLow;
     public static DigitalInput elevatorelevatorMagMed;
-    public static DigitalInput elevatorelevatorMagHight;
+    public static DigitalInput elevatorelevatorMagHigh;
     public static Solenoid elevatorelevatorFirstStageSolenoid;
     public static Solenoid elevatorelevatorSecondStageSolenoid;
     public static AnalogInput elevatorirSensor;
     public static DigitalInput elevatorlimitSwitch;
+    public static Solenoid elevatorelevatorStackHolder;
     public static CANTalon elevatorelevatorRollerTalon;
-    public static DoubleSolenoid elevatorelevatorClamperDoubleSolenoid;
     public static DoubleSolenoid binCollectorbinCollectorDoubleSolenoid;
     public static CANTalon binCollectorbinCollectorTalon;
 
@@ -92,8 +92,8 @@ public class RobotMap {
         elevatorelevatorMagMed = new DigitalInput(4);
         LiveWindow.addSensor("Elevator", "elevatorMagMed", elevatorelevatorMagMed);
         
-        elevatorelevatorMagHight = new DigitalInput(5);
-        LiveWindow.addSensor("Elevator", "elevatorMagHight", elevatorelevatorMagHight);
+        elevatorelevatorMagHigh = new DigitalInput(5);
+        LiveWindow.addSensor("Elevator", "elevatorMagHigh", elevatorelevatorMagHigh);
         
         elevatorelevatorFirstStageSolenoid = new Solenoid(0, 5);
         LiveWindow.addActuator("Elevator", "elevatorFirstStageSolenoid", elevatorelevatorFirstStageSolenoid);
@@ -107,11 +107,11 @@ public class RobotMap {
         elevatorlimitSwitch = new DigitalInput(2);
         LiveWindow.addSensor("Elevator", "limitSwitch", elevatorlimitSwitch);
         
+        elevatorelevatorStackHolder = new Solenoid(0, 6);
+        LiveWindow.addActuator("Elevator", "elevatorStackHolder", elevatorelevatorStackHolder);
+        
         elevatorelevatorRollerTalon = new CANTalon(9);
         
-        
-        elevatorelevatorClamperDoubleSolenoid = new DoubleSolenoid(0, 6, 7);      
-        LiveWindow.addActuator("Elevator", "elevatorClamperDoubleSolenoid", elevatorelevatorClamperDoubleSolenoid);
         
         binCollectorbinCollectorDoubleSolenoid = new DoubleSolenoid(0, 3, 4);      
         LiveWindow.addActuator("BinCollector", "binCollectorDoubleSolenoid", binCollectorbinCollectorDoubleSolenoid);
