@@ -15,6 +15,7 @@ import org.usfirst.frc1073.robot15.Robot;
 import org.usfirst.frc1073.robot15.RobotMap;
 import org.usfirst.frc1073.robot15.commands.*;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -63,7 +64,14 @@ public class Dashboard extends Subsystem {
 		SmartDashboard.putNumber("Tote Count", Robot.elevator.getTotesHeld());
 		SmartDashboard.putNumber("Distance Widget", Robot.rangeFinder.getDistance());
 		//SmartDashboard.putNumber("PSI Gauge", )
-		//SmartDashboard.putNumber("ToteCollectorInfo Widget", ) Needs Values
+		//SmartDashboard.putNumber("ToteCollectorInfo", )
+		SmartDashboard.putNumber("Battery", DriverStation.getInstance().getBatteryVoltage());
+		//SmartDashboard.putNumber("Claw", )
+		//SmartDashboard.putNumber("Wrist", )
+		//SmartDashboard.putNumber("Roller", )
+		//SmartDashboard.putNumber("Elevator Level", )
+		//SmartDashboard.putNumber("Current", RobotMap.)
+		
 	}
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
