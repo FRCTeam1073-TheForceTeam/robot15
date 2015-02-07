@@ -62,6 +62,8 @@ public class Dashboard extends Subsystem {
 		SmartDashboard.putNumber("Driving Mode", CubicRel(Robot.driveTrain.isCubicDrive(), Robot.driveTrain.isFieldRelative()));
 		SmartDashboard.putNumber("Tote Count", Robot.elevator.getTotesHeld());
 		SmartDashboard.putNumber("Distance Widget", Robot.rangeFinder.getDistance());
+		//SmartDashboard.putNumber("PSI Gauge", )
+		//SmartDashboard.putNumber("ToteCollectorInfo Widget", ) Needs Values
 	}
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
