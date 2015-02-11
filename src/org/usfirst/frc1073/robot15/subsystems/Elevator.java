@@ -53,9 +53,9 @@ public class Elevator extends Subsystem {
      * 2 = piston in
      * 
      *********************/
-    private final int STOPPED = 0;
-    private final int PISTON_OUT = 1;
-    private final int PISTON_IN = 2;
+    public final int STOPPED = 0;
+    public final int PISTON_OUT = 1;
+    public final int PISTON_IN = 2;
     
     private int stopPoint = 0; //The point it is at
     /************************
@@ -66,10 +66,10 @@ public class Elevator extends Subsystem {
      * 3 = stack on top of another tote on field that is already placed
      * 
      ************************/
-    private final int FULL_OUT = 0;
-    private final int SCORE_PLATFORM = 1;
-    private final int ELEVATOR_STACK = 2;
-    private final int STACK_EXISTING = 3;
+    public final int FULL_OUT = 0;
+    public final int SCORE_PLATFORM = 1;
+    public final int ELEVATOR_STACK = 2;
+    public final int STACK_EXISTING = 3;
     
     private int goToPoint = 0;
     /************************
@@ -176,6 +176,7 @@ public class Elevator extends Subsystem {
     }
     
     // Method to print the state in a nice format on dashboard
+    // Mainly for testing on the fly
     public void stateDashboard(){
     	String state = "";
     	if(getState() == STOPPED) state = "Stopped.";
@@ -185,6 +186,7 @@ public class Elevator extends Subsystem {
     }
     
     // Method to print the elevator position
+    // Mainly for testing on the fly
     public void elevatorDashboard(){
     	String position = "";
     	if(getStopPoint() == FULL_OUT) position = "In position to collect";
