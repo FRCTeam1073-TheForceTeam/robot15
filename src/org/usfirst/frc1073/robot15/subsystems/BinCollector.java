@@ -45,35 +45,43 @@ public class BinCollector extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    // Method to lift the bin
     public void binLift(){
     	binCollectorTalon.set(SPEED);
     }
     
+    // Method to lower the bin
     public void binLower(){
     	binCollectorTalon.set(-SPEED);
     }
+    
+    // Method to stop the bin motor
     public void binStop(){
     	binCollectorTalon.set(0.0);
     }
     
-    public void close() {
-    	binCollectorTalon.set(-1);
+    // this shouldn't be all one method. it should be divided into multiple because one button to lower, lift, and one button to toggle open/close
+    /*public void close() {
+    	binCollectorTalon.set(-1); // <-------------------- WHY IS THIS FULL SPEED 1.0
     	binCollectorDoubleSolenoid.set(Value.kReverse);
     	isClosed = true;
     	SmartDashboard.putBoolean("Bin Collector Collecting", isClosed);
     	
-    }
+    } */
     
+    // Returns the state
     public boolean getState(){
     	return isClosed;
     }
     
-	public void open() {
+    // this shouldn't be all one method. it should be divided into multiple because one button to lower, lift, and one button to toggle open/close
+	/* public void open() {
 		binCollectorTalon.set(1);
 		binCollectorDoubleSolenoid.set(Value.kForward);
 		isClosed = false;
 		SmartDashboard.putBoolean("Bin Collector Collecting", isClosed);
-	}		
+	}	*/
+    
 	
 }
 

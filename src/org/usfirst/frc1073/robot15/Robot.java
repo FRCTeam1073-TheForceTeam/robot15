@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
         autonomousCommand = (Command) chooser.getSelected();
         
         //This is here for testing to see if code is actively running (unimportant)
-        SmartDashboard.putString("Test #", "56");
+        // SmartDashboard.putString("Test #", "56");
         
        //choose autonomous
         chooser.addDefault("Drive Forward", new AutonomousCommandGroup());

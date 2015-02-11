@@ -37,10 +37,12 @@ public class  BinCollect extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
+    	/*
     	if(!Robot.binCollector.getState()){
-    		Robot.binCollector.open();
+    		Robot.binCollector.open(); // see comments in bin collector
     	}
-    	else Robot.binCollector.close();
+    	else Robot.binCollector.close(); // see comments in bin collector
+    	*/
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -44,7 +44,7 @@ public class TotePuncher extends Subsystem {
     public void manipulateSolenoid(boolean on) {
     	
     	totePucherSolenoid.set(on);
-    	SmartDashboard.putBoolean("totePucherSolenoid", on);
+    	// SmartDashboard.putBoolean("totePucherSolenoid", on); for testing
     }
 }
 
