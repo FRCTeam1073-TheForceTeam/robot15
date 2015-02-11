@@ -41,6 +41,8 @@ public class Elevator extends Subsystem {
     private final boolean OPEN = true; 
     private final boolean CLOSE = false;
     
+    private final double ROLLER_SPEED = 0.7; // Set speed of rollers. #########MIGHT NEED TO CHANGE, NOT FINAL#############
+    
     private int totesHeld = 0; // The number of totes in the robot
     
     private int state = 0; // State of the elevator
@@ -116,12 +118,12 @@ public class Elevator extends Subsystem {
     
     // Method to collect the rollers to role in a tote
     public void rollersCollect(){
-    	elevatorRollerTalon.set(0.7);
+    	elevatorRollerTalon.set(ROLLER_SPEED);
     }
     
     // Method ejects the totes on rolers
     public void rollersPurge(){
-    	elevatorRollerTalon.set(-0.7);
+    	elevatorRollerTalon.set(-ROLLER_SPEED);
     }
     
     // Method to turn the rolers off
@@ -214,6 +216,9 @@ public class Elevator extends Subsystem {
         	}
         	else{ // Continue moving
         		pistonIn();
+        		// These if statements are for if the user changes the desired position while still moving and direction needs to change
+        		if(goToPoint - 1 == SCORE_PLATFORM && !elevatorMagLow.get()) stopPoint = SCORE_PLATFORM;
+        		if(goToPoint - 1 == ELEVATOR_STACK && !elevatorMagLow.get()) stopPoint = ELEVATOR_STACK;
         	}
     	}
     	else { // For going down
@@ -226,6 +231,9 @@ public class Elevator extends Subsystem {
             	}
             	else{ // Continue moving
             		pistonOut();
+            		// These if statements are for if the user changes the desired position while still moving and direction needs to change
+            		if(goToPoint + 1 == SCORE_PLATFORM && !elevatorMagLow.get()) stopPoint = SCORE_PLATFORM;
+            		if(goToPoint + 1 == ELEVATOR_STACK && !elevatorMagLow.get()) stopPoint = ELEVATOR_STACK;
             	}
     		}
     		if(goToPoint == SCORE_PLATFORM){
@@ -237,6 +245,9 @@ public class Elevator extends Subsystem {
             	}
             	else{ // Continue moving
             		pistonOut();
+            		// These if statements are for if the user changes the desired position while still moving and direction needs to change
+            		if(goToPoint + 1 == SCORE_PLATFORM && !elevatorMagLow.get()) stopPoint = SCORE_PLATFORM;
+            		if(goToPoint + 1 == ELEVATOR_STACK && !elevatorMagLow.get()) stopPoint = ELEVATOR_STACK;
             	}
     		}
     		else{	// goToPoint must have been 0
