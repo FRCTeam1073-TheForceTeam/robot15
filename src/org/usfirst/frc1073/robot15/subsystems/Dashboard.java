@@ -58,6 +58,13 @@ public class Dashboard extends Subsystem {
     	}
     	return -1;
     }
+    
+    /* private int collectPunch(boolean collecting, boolean punching)
+    {
+    	if()
+    	return 0;
+    }
+    */
 	public void sendData()
 	{
 		SmartDashboard.putNumber("Driving Mode", CubicRel(Robot.driveTrain.isCubicDrive(), Robot.driveTrain.isFieldRelative()));
@@ -68,9 +75,8 @@ public class Dashboard extends Subsystem {
 		SmartDashboard.putNumber("Battery", DriverStation.getInstance().getBatteryVoltage());
 		//SmartDashboard.putNumber("Claw", )
 		//SmartDashboard.putNumber("Wrist", )
-		//SmartDashboard.putNumber("Roller", )
-		//SmartDashboard.putNumber("Elevator Level", )
-		//SmartDashboard.putNumber("Current", RobotMap.)
+		SmartDashboard.putNumber("Elevator Level", Robot.elevator.getState());
+		//SmartDashboard.putNumber("Current", )
 		
 	}
         // Set the default command for a subsystem here.
