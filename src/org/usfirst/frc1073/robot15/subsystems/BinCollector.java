@@ -59,7 +59,22 @@ public class BinCollector extends Subsystem {
     public void binStop(){
     	binCollectorTalon.set(0.0);
     }
-    
+    public void grabBin()
+    {
+    	/*
+    	 * 
+    	 * TODO: Replace double solenoid with single solenoid then this should be an easy one liner.
+    	 * 
+    	 */
+    }
+    public void releaseBin()
+    {
+    	/*
+    	 * 
+    	 * TODO: Replace double solenoid with single solenoid then this should be an easy one liner.
+    	 * 
+    	 */
+    }
     // this shouldn't be all one method. it should be divided into multiple because one button to lower, lift, and one button to toggle open/close
     /*public void close() {
     	binCollectorTalon.set(-1); // <-------------------- WHY IS THIS FULL SPEED 1.0
