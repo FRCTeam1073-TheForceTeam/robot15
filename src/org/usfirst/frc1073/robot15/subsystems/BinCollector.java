@@ -11,6 +11,7 @@
 
 package org.usfirst.frc1073.robot15.subsystems;
 
+import org.usfirst.frc1073.robot15.Robot;
 import org.usfirst.frc1073.robot15.RobotMap;
 import org.usfirst.frc1073.robot15.commands.*;
 
@@ -92,7 +93,7 @@ public class BinCollector extends Subsystem
     // Returns the state
     public boolean getState()
     {
-    	return isClosed;
+    	return binCollectorSolenoid.get();
     }
     
     //returns true if it is collecting
