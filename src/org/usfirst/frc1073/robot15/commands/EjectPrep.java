@@ -19,6 +19,8 @@ import org.usfirst.frc1073.robot15.Robot;
  */
 public class  EjectPrep extends Command {
 
+	boolean done = false;
+	
     public EjectPrep() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -30,15 +32,21 @@ public class  EjectPrep extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.elevator.move(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (Robot.elevator.getStopPoint() == 1 && Robot.elevator.getState() == 0)
+    	{
+        	Robot.elevator.stackDrop();
+        	done = true;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return done;
     }
 
     // Called once after isFinished returns true
