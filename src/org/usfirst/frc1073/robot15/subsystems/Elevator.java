@@ -53,35 +53,32 @@ public class Elevator extends Subsystem {
      * 2 = piston in
      * 
      *********************/
+    
     public final int STOPPED = 0;
     public final int PISTON_OUT = 1;
     public final int PISTON_IN = 2;
     
-    private int stopPoint = 0; //The point it is at
-    /************************
-     * 
-     * 0 = all the way out
-     * 1 = stop at scoring platform
-     * 2 = put tote in stack in elevator
-     * 3 = stack on top of another tote on field that is already placed
-     * 
-     ************************/
     public final int FULL_OUT = 0;
     public final int SCORE_PLATFORM = 1;
     public final int ELEVATOR_STACK = 2;
     public final int STACK_EXISTING = 3;
+    private final int BETWEEN = 4;
     
-    private int goToPoint = 0;
+    private int stopPoint = 0;  // The point it is at
+    private int goToPoint = 0;  // The point it is going to
+    private int lowerPoint = 0; // The point below the current location
+    private int abovePoint = 1; // The point above the current location
     /************************
-     * 
-     * The point it is going to next and is basically a copy of stopPoint
      * 
      * 0 = all the way out
      * 1 = stop at scoring platform
      * 2 = put tote in stack in elevator
      * 3 = stack on top of another tote on field that is already placed
+     * 4 = the elevator is currently between two positions
      * 
      ************************/
+    
+    
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -175,6 +172,145 @@ public class Elevator extends Subsystem {
     	return stopPoint;
     }
     
+    // USED IF COMMAND IS INTERRUPTED AND POSITION NEEDS TO BE INBETWEEN
+    public void setStopPointBetween(){
+    	stopPoint = BETWEEN;
+    }
+    
+    // Method used by move that does the checks when moving down
+    private void goingDownCheck(){
+    	boolean theHeight;
+    	
+    	if(goToPoint == ELEVATOR_STACK){
+			theHeight = elevatorMagMed.get();
+			
+        	if(!theHeight){ // Means the elevator is there
+        		pistonStop();
+        		stopPoint = goToPoint;
+        		
+        		// This updates the lower and above points once there
+        		if(stopPoint == FULL_OUT){
+        			lowerPoint = FULL_OUT;
+        			abovePoint = SCORE_PLATFORM;
+        		}
+        		else if(stopPoint == SCORE_PLATFORM){
+        			lowerPoint = FULL_OUT;
+        			abovePoint = ELEVATOR_STACK;
+        		}
+        		else if(stopPoint == ELEVATOR_STACK){
+        			lowerPoint = SCORE_PLATFORM;
+        			abovePoint = STACK_EXISTING;
+        		}
+        		else if(stopPoint == STACK_EXISTING){
+        			lowerPoint = ELEVATOR_STACK;
+        			abovePoint = STACK_EXISTING;
+        		}
+        	}
+        	else{ // Continue moving
+        		pistonOut();
+        	}
+		}
+		if(goToPoint == SCORE_PLATFORM){
+			theHeight = elevatorMagLow.get();
+			
+        	if(!theHeight){ // Means the elevator is there
+        		pistonStop();
+        		stopPoint = goToPoint;
+        	}
+        	else{ // Continue moving
+        		pistonOut();
+        	}
+		}
+		else{	// goToPoint must have been 0
+			pistonOut();	// No stop condition needed, stops when cylinder full
+			stopPoint = 0;
+		}
+    }
+    
+    // Method used by move that does the checks when moving up
+    private void goingUpCheck(){
+    	boolean theHeight;
+    	
+    	if(goToPoint == SCORE_PLATFORM){
+			theHeight = elevatorMagLow.get();
+		}
+    	if(goToPoint == ELEVATOR_STACK){
+    		theHeight = elevatorMagMed.get();
+    		if(!elevatorMagLow.get() && theHeight){ // This is to update the position when it is in between two points
+    			lowerPoint = SCORE_PLATFORM;
+    			abovePoint = ELEVATOR_STACK;
+    		}
+    	}
+    	
+    	else{
+    		theHeight = elevatorMagHigh.get();  // Assuming the only other value would be STACK_EXISTING
+    		if(!elevatorMagLow.get() && theHeight){ // This is to update the position when it is in between two points
+    			lowerPoint = SCORE_PLATFORM;
+    			abovePoint = ELEVATOR_STACK;
+    		}
+    		if(!elevatorMagMed.get() && theHeight){ // This is to update the position when it is in between two points
+    			lowerPoint = ELEVATOR_STACK;
+    			abovePoint = STACK_EXISTING;
+    		}
+    	}
+    	
+    	if(!theHeight){ // Means the elevator is there
+    		pistonStop();
+    		stopPoint = goToPoint;
+    		
+    		// This updates the lower and above points once there
+    		if(stopPoint == FULL_OUT){
+    			lowerPoint = FULL_OUT;
+    			abovePoint = SCORE_PLATFORM;
+    		}
+    		else if(stopPoint == SCORE_PLATFORM){
+    			lowerPoint = FULL_OUT;
+    			abovePoint = ELEVATOR_STACK;
+    		}
+    		else if(stopPoint == ELEVATOR_STACK){
+    			lowerPoint = SCORE_PLATFORM;
+    			abovePoint = STACK_EXISTING;
+    		}
+    		else if(stopPoint == STACK_EXISTING){
+    			lowerPoint = ELEVATOR_STACK;
+    			abovePoint = STACK_EXISTING;
+    		}
+    	}
+    	else{ // Continue moving
+    		pistonIn();
+    	}
+    }
+    
+    /*********************************
+     * 
+     * Method to move the elevator to a given position from any point
+     * 
+     * @theHeight Elevator magnet switch is -ve polarity, i.e. false = "at magnet position"
+     * 
+     ********************************/
+    public void move(int newGoTo){
+    	goToPoint = newGoTo;
+    	boolean theHeight;
+    	
+    	// This is if the command was 
+    	if(stopPoint == BETWEEN){
+    		if(goToPoint >= abovePoint){
+    			goingUpCheck();
+    		}
+    		else if(goToPoint <= lowerPoint){
+    			goingDownCheck();
+    		}
+    	}
+    	if(goToPoint == stopPoint) pistonStop(); // Check to see if elevator is already there
+    	else if(goToPoint > stopPoint){ // To move up
+    		goingUpCheck();
+    	}
+    	else { // For going down
+    		goingDownCheck();
+    	}
+    	
+    }
+    
     // Method to print the state in a nice format on dashboard
     // Mainly for testing on the fly
     public void stateDashboard(){
@@ -194,70 +330,6 @@ public class Elevator extends Subsystem {
     	if(getStopPoint() == ELEVATOR_STACK) position = "In position to add to stack";
     	if(getStopPoint() == STACK_EXISTING) position = "In position to stack on an existing tote";
     	SmartDashboard.putString("Position: ", position);
-    }
-    
-    /*********************************
-     * 
-     * Method to move the elevator to a given position from any point
-     * 
-     * @theHeight Elevator magnet switch is -ve polarity, i.e. false = "at magnet position"
-     * 
-     ********************************/
-    public void move(int newGoTo){
-    	goToPoint = newGoTo;
-    	boolean theHeight;
-    	if(goToPoint == stopPoint) pistonStop(); //Check to see if elevator is already there
-    	else if(goToPoint > stopPoint){ // To move up
-    		if(goToPoint == SCORE_PLATFORM) theHeight = elevatorMagLow.get();
-        	if(goToPoint == ELEVATOR_STACK) theHeight = elevatorMagMed.get();
-        	else theHeight = elevatorMagHigh.get();  // Assuming the only other value would be STACK_EXISTING
-        	
-        	if(!theHeight){ // Means the elevator is there
-        		pistonStop();
-        		stopPoint = goToPoint;
-        	}
-        	else{ // Continue moving
-        		pistonIn();
-        		// These if statements are for if the user changes the desired position while still moving and direction needs to change
-        		if(goToPoint - 1 == SCORE_PLATFORM && !elevatorMagLow.get()) stopPoint = SCORE_PLATFORM;
-        		if(goToPoint - 1 == ELEVATOR_STACK && !elevatorMagLow.get()) stopPoint = ELEVATOR_STACK;
-        	}
-    	}
-    	else { // For going down
-    		if(goToPoint == ELEVATOR_STACK){
-    			theHeight = elevatorMagMed.get();
-    			
-            	if(!theHeight){ // Means the elevator is there
-            		pistonStop();
-            		stopPoint = goToPoint;
-            	}
-            	else{ // Continue moving
-            		pistonOut();
-            		// These if statements are for if the user changes the desired position while still moving and direction needs to change
-            		if(goToPoint + 1 == SCORE_PLATFORM && !elevatorMagLow.get()) stopPoint = SCORE_PLATFORM;
-            		if(goToPoint + 1 == ELEVATOR_STACK && !elevatorMagLow.get()) stopPoint = ELEVATOR_STACK;
-            	}
-    		}
-    		if(goToPoint == SCORE_PLATFORM){
-    			theHeight = elevatorMagLow.get();
-    			
-            	if(!theHeight){ // Means the elevator is there
-            		pistonStop();
-            		stopPoint = goToPoint;
-            	}
-            	else{ // Continue moving
-            		pistonOut();
-            		// These if statements are for if the user changes the desired position while still moving and direction needs to change
-            		if(goToPoint + 1 == SCORE_PLATFORM && !elevatorMagLow.get()) stopPoint = SCORE_PLATFORM;
-            		if(goToPoint + 1 == ELEVATOR_STACK && !elevatorMagLow.get()) stopPoint = ELEVATOR_STACK;
-            	}
-    		}
-    		else{	// goToPoint must have been 0
-    			pistonOut();	// No stop condition needed, stops when cylinder full
-    			stopPoint = 0;
-    		}
-    	}
-    	
     }
     
 }
