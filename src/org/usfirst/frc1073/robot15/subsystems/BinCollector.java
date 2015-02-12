@@ -74,6 +74,26 @@ public class BinCollector extends Subsystem {
     	return isClosed;
     }
     
+    //returns true if it is collecting
+    public boolean isCollecting()
+    {
+    	if(binCollectorTalon.getSetpoint() > 0)
+    	{
+    		return true;
+    	}
+    	return false;
+    }
+    
+    //returns true if it is lowering
+    public boolean islowering()
+    {
+    	if(binCollectorTalon.getSetpoint() < 0)
+    	{
+    		return true;
+    	}
+    	return false;
+    }
+    
     // this shouldn't be all one method. it should be divided into multiple because one button to lower, lift, and one button to toggle open/close
 	/* public void open() {
 		binCollectorTalon.set(1);

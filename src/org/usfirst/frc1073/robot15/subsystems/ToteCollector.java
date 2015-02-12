@@ -87,5 +87,25 @@ public class ToteCollector extends Subsystem {
     	toteCollectorLeftTalon.set(0);
     	toteCollectorRightTalon.set(0);
     }
+    
+    //returns true if it is collecting
+    public boolean isCollecting()
+    {
+    	if(toteCollectorLeftTalon.getSetpoint() > 0)
+    	{
+    		return true;
+    	}
+    	return false;
+    }
+    
+    //returns true if it is purging
+    public boolean isPurging()
+    {
+    	if(toteCollectorLeftTalon.getSetpoint() < 0)
+    	{
+    		return true;
+    	}
+    	return false;
+    }
 }
 

@@ -59,24 +59,31 @@ public class Dashboard extends Subsystem {
     	return -1;
     }
     
-    /* private int collectPunch(boolean collecting, boolean punching)
+    private int collectPunch(boolean collectingTote, boolean purgingTote, boolean collectingBin, boolean purgingBin)
     {
-    	if()
-    	return 0;
+    	if(collectingTote || collectingBin)
+    	{
+    		return 0;
+    	}
+    	else if(purgingTote || purgingBin)
+    	{
+    		return 1;
+    	}
+    	return 1;
     }
-    */
+    
 	public void sendData()
 	{
 		SmartDashboard.putNumber("Driving Mode", CubicRel(Robot.driveTrain.isCubicDrive(), Robot.driveTrain.isFieldRelative()));
 		SmartDashboard.putNumber("Tote Count", Robot.elevator.getTotesHeld());
 		SmartDashboard.putNumber("Distance Widget", Robot.rangeFinder.getDistance());
-		//SmartDashboard.putNumber("PSI Gauge", )
-		//SmartDashboard.putNumber("ToteCollectorInfo", )
+		SmartDashboard.putNumber("ToteCollectorInfo", collectPunch(Robot.toteCollector.isCollecting(), Robot.toteCollector.isPurging(), Robot.binCollector.isCollecting(), Robot.binCollector.islowering()));
 		SmartDashboard.putNumber("Battery", DriverStation.getInstance().getBatteryVoltage());
-		//SmartDashboard.putNumber("Claw", )
-		//SmartDashboard.putNumber("Wrist", )
+		SmartDashboard.putBoolean("Claw", Robot.binCollector.getState());
+		SmartDashboard.putBoolean("Wrist", Robot.toteCollector.getState());
 		SmartDashboard.putNumber("Elevator Level", Robot.elevator.getState());
 		//SmartDashboard.putNumber("Current", )
+		//SmartDashboard.putNumber("PSI Gauge", )
 		
 	}
         // Set the default command for a subsystem here.
