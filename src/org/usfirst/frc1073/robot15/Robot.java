@@ -37,7 +37,6 @@ public class Robot extends IterativeRobot {
     public static DriveTrain driveTrain;
     public static RangeFinder rangeFinder;
     public static ToteCollector toteCollector;
-    public static Transducer transducer;
     public static TotePuncher totePuncher;
     public static Elevator elevator;
     public static BinCollector binCollector;
@@ -56,7 +55,6 @@ public class Robot extends IterativeRobot {
         driveTrain = new DriveTrain();
         rangeFinder = new RangeFinder();
         toteCollector = new ToteCollector();
-        transducer = new Transducer();
         totePuncher = new TotePuncher();
         elevator = new Elevator();
         binCollector = new BinCollector();
