@@ -117,8 +117,6 @@ public class OI
 
         SmartDashboard.putData("FieldRel", new FieldRel());
 
-        SmartDashboard.putData("AutonomousGrab", new AutonomousGrab());
-
         SmartDashboard.putData("AutonomousBackup", new AutonomousBackup());
 
 
