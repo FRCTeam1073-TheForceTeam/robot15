@@ -96,7 +96,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '20'
+          value: '6'
       Base: CAN Talon SRX
       Name: toteCollectorLeftTalon
     - Children: []
@@ -261,7 +261,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '19'
+          value: '5'
       Base: CAN Talon SRX
       Name: elevatorRollerTalon
     Properties:
@@ -277,7 +277,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '18'
+          value: '4'
       Base: CAN Talon SRX
       Name: binCollectorTalon
     - Children: []
@@ -861,7 +861,7 @@ Properties:
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
   Wiring File: !!robotbuilder.data.properties.FileProperty {default: '', extension: html,
-    folder: false, name: Wiring File, validators: null, value: ''}
+    folder: false, name: Wiring File, validators: null, value: robot15.html}
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: ../GearsBotDemo.world}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,

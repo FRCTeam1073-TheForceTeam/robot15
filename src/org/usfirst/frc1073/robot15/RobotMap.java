@@ -73,7 +73,7 @@ public class RobotMap {
         rangeFinderultrasonic = new Ultrasonic(0, 1);
         LiveWindow.addSensor("RangeFinder", "ultrasonic", rangeFinderultrasonic);
         
-        toteCollectortoteCollectorLeftTalon = new CANTalon(20);
+        toteCollectortoteCollectorLeftTalon = new CANTalon(6);
         
         
         toteCollectortoteCollectorRightTalon = new CANTalon(7);
@@ -106,10 +106,10 @@ public class RobotMap {
         elevatorelevatorStackHolderSolenoid = new Solenoid(1, 1);
         LiveWindow.addActuator("Elevator", "elevatorStackHolderSolenoid", elevatorelevatorStackHolderSolenoid);
         
-        elevatorelevatorRollerTalon = new CANTalon(19);
+        elevatorelevatorRollerTalon = new CANTalon(5);
         
         
-        binCollectorbinCollectorTalon = new CANTalon(18);
+        binCollectorbinCollectorTalon = new CANTalon(4);
         
         
         binCollectorbinCollectorSolenoid = new Solenoid(1, 2);
