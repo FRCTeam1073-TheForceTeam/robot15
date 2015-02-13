@@ -54,9 +54,9 @@ public class Elevator extends Subsystem {
      * 
      *********************/
     
-    public final int STOPPED = 0;
-    public final int PISTON_OUT = 1;
-    public final int PISTON_IN = 2;
+    private final int STOPPED = 0;
+    private final int PISTON_OUT = 1;
+    private final int PISTON_IN = 2;
     
     public final int FULL_OUT = 0;
     public final int SCORE_PLATFORM = 1;
@@ -129,7 +129,7 @@ public class Elevator extends Subsystem {
     }
     
     // Method to pull the elevator pistons in
-    private void pistonIn(){
+    public void pistonIn(){
     	// keeping these values in case we need to revert back to 2 single solenoids
     	// elevatorFirstStageSolenoid.set(CLOSE);
     	// elevatorSecondStageSolenoid.set(OPEN);
@@ -139,7 +139,7 @@ public class Elevator extends Subsystem {
     }
     
     // Method to push the piston out
-    private void pistonOut(){
+    public void pistonOut(){
     	// keeping these values in case we need to revert back to 2 single solenoids
     	// elevatorSecondStageSolenoid.set(CLOSE);
     	// elevatorFirstStageSolenoid.set(OPEN);
@@ -149,7 +149,7 @@ public class Elevator extends Subsystem {
     }
     
     // Method to stop the piston where it is
-    private void pistonStop(){
+    public void pistonStop(){
     	// keeping these values in case we need to revert back to 2 single solenoids
     	// elevatorFirstStageSolenoid.set(CLOSE);
     	// elevatorSecondStageSolenoid.set(CLOSE);
@@ -298,7 +298,6 @@ public class Elevator extends Subsystem {
      ********************************/
     public void move(int newGoTo){
     	goToPoint = newGoTo;
-    	boolean theHeight;
     	
     	// This is if the command was 
     	if(stopPoint == BETWEEN){
@@ -339,9 +338,14 @@ public class Elevator extends Subsystem {
     	if(getStopPoint() == STACK_EXISTING) position = "In position to stack on an existing tote";
     	SmartDashboard.putString("Position: ", position);
     }
-    public double irReadout()
-    {
-    	return irSensor.getValue();
+    
+    // Method for puting the information on the dashboard while testing
+    public void testingInformation(){
+    	SmartDashboard.putBoolean("Bottom mag reading: ", elevatorMagLow.get());
+    	SmartDashboard.putBoolean("Bottom mag reading: ", elevatorMagMed.get());
+    	SmartDashboard.putBoolean("Bottom mag reading: ", elevatorMagHigh.get());
+    	elevatorDashboard();
+    	stateDashboard();
     }
     
 }

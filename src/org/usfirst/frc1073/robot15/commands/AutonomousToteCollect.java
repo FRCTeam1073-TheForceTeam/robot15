@@ -35,7 +35,7 @@ public class  AutonomousToteCollect extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.toteCollector.wheelsCollect();
-    	if(Robot.elevator.irReadout() <= 2)
+    	if(Robot.elevator.getIrVal() <= 2) // This method has changed because you recreated a method i already made... next time read the code keenan.
     	{
     		end();
     	}
