@@ -49,7 +49,7 @@ public class  Drive extends Command {
     	if(Math.abs(y) <= 0.05){
     		y = 0;
     	}
-    	if(Math.abs(twist) <= 0.15){
+    	if(Math.abs(twist) <= 0.30){
     		twist = 0;
     	}
     	

@@ -45,9 +45,11 @@ public class DriveTrain extends Subsystem {
     // Constructs the DriveTrain
     public DriveTrain(){
         drive = new RobotDrive(driveFrontLeft, driveBackLeft, driveFrontRight, driveBackRight);
-    	isCubic = false;
+    	isCubic = true; // set to true so we can test it with it on
     	drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true); // Inverts the motor because it is facing the other direction
-		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true); // Inverts the motor because it is facing the other direction
+		// drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, false); unneeded but not tested
+		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true); // Inverts the motor because it is facing the other direction
+		drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true); // Inverts the motor because it is facing the other direction
 		gyro.reset(); //Resets gyro once so field relative has one 'true' North direction
     }
     
@@ -64,28 +66,33 @@ public class DriveTrain extends Subsystem {
      * @param z is the joystick twist value
      ******************************************/
     public void move(float x, float y, float z){
-    	// SmartDashboard.putNumber("Old X: ", x); for testing
-    	// SmartDashboard.putNumber("Old Y: ", y); for testing
+    	
+    	// For testing
+    	SmartDashboard.putNumber("Unramped X: ", x); 
+    	SmartDashboard.putNumber("Unramped Y: ", y); 
+    	SmartDashboard.putNumber("Twist value: ", z);
+    	
     	if(isCubic){
     		x = cubicScale(x);
     		y = cubicScale(y);
-    		// SmartDashboard.putNumber("Ramped X: ", x); for testing
-        	// SmartDashboard.putNumber("Ramped Y: ", y); for testing
+    		z = cubicScale(z);
+    		 SmartDashboard.putNumber("Ramped X: ", x);
+        	 SmartDashboard.putNumber("Ramped Y: ", y); 
     	}
     	
-    	if (y != 0 && x == 0 && z == 0){
+    	/* if (y != 0 && x == 0 && z == 0){
     		if(!isStraight){
     			gyroAngle = getGyroAngle();
     			isStraight = true;
     		}
-    		if(getGyroAngle() > gyroAngle + 0.05){
+    		if(getGyroAngle() > gyroAngle + 0.05){                         KEENAN WAS CLEARLY HERE 
     			z = twistCorrectionSpeed;
     		}
     		if(getGyroAngle() < gyroAngle - 0.05 ){
     			z = -twistCorrectionSpeed;
     		}
     	}
-    	else isStraight = false;
+    	else isStraight = false; */
     	
     	if(!isFieldRel){
     		drive.mecanumDrive_Cartesian(x, y, z, 0); //0 is in place of gyro value for field relative
@@ -93,14 +100,14 @@ public class DriveTrain extends Subsystem {
     	else drive.mecanumDrive_Cartesian(x, y, z, gyro.getAngle());
     	
     	//For testing
-    	// SmartDashboard.putNumber("The front left val:", driveFrontLeft.get());
-    	// SmartDashboard.putNumber("The back left val:", driveBackLeft.get());
-    	// SmartDashboard.putNumber("The front right val:", driveFrontRight.get());
-    	// SmartDashboard.putNumber("The back right val:", driveBackRight.get());
+    	SmartDashboard.putNumber("The front left val:", driveFrontLeft.get());
+    	SmartDashboard.putNumber("The back left val:", driveBackLeft.get());
+    	SmartDashboard.putNumber("The front right val:", driveFrontRight.get());
+    	SmartDashboard.putNumber("The back right val:", driveBackRight.get());
     	
-    	// SmartDashboard.putNumber("Gyro value is:", Math.abs(gyro.getAngle() % 360)); //Sets the gyro values to always be positive and never go above 360 degrees
-    	// SmartDashboard.putNumber("The accelerometer x value is:", accelerometer.getX());
-    	// SmartDashboard.putNumber("The accelerometer y value is:", accelerometer.getY());
+    	SmartDashboard.putNumber("Gyro value is:", Math.abs(gyro.getAngle() % 360)); //Sets the gyro values to always be positive and never go above 360 degrees
+    	SmartDashboard.putNumber("The accelerometer x value is:", accelerometer.getX());
+    	SmartDashboard.putNumber("The accelerometer y value is:", accelerometer.getY());
     }
     
     // Method to do the cubic scaling

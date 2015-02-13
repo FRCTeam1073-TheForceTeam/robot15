@@ -24,7 +24,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: &id002 [CANID]
-          value: '6'
+          value: '8'
       Base: CAN Talon SRX
       Name: driveFrontRight
     - Children: []
@@ -34,7 +34,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '3'
+          value: '2'
       Base: CAN Talon SRX
       Name: driveBackLeft
     - Children: []
@@ -44,7 +44,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '5'
+          value: '9'
       Base: CAN Talon SRX
       Name: driveBackRight
     - Children: []
@@ -54,7 +54,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '4'
+          value: '3'
       Base: CAN Talon SRX
       Name: driveFrontLeft
     Properties:
@@ -96,7 +96,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '2'
+          value: '20'
       Base: CAN Talon SRX
       Name: toteCollectorLeftTalon
     - Children: []
@@ -283,7 +283,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '9'
+          value: '19'
       Base: CAN Talon SRX
       Name: elevatorRollerTalon
     Properties:
@@ -299,7 +299,7 @@ Children:
           default: '2'
           name: CAN ID
           validators: *id002
-          value: '8'
+          value: '18'
       Base: CAN Talon SRX
       Name: binCollectorTalon
     - Children: []
@@ -350,7 +350,7 @@ Children:
           name: Command
           type: Command
           validators: &id010 [TypeDropdownSelected]
-          value: ResetGyroCommand
+          value: None
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: &id011 [whileHeld, whenPressed, whenReleased]
           default: whileHeld
@@ -721,14 +721,6 @@ Children:
   - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: None}
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
-    Base: Command
-    Name: ResetGyroCommand
-  - Children: []
-    Properties:
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: DriveTrain}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
@@ -902,7 +894,7 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Stella\workspace',
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: /Users/nnapior/workspace,
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ../}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}

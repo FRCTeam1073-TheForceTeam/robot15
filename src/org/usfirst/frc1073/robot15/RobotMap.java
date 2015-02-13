@@ -59,22 +59,22 @@ public class RobotMap {
         driveTraingyro = new Gyro(0);
         LiveWindow.addSensor("DriveTrain", "gyro", driveTraingyro);
         driveTraingyro.setSensitivity(0.007);
-        driveTraindriveFrontRight = new CANTalon(6);
+        driveTraindriveFrontRight = new CANTalon(8);
         
         
-        driveTraindriveBackLeft = new CANTalon(3);
+        driveTraindriveBackLeft = new CANTalon(2);
         
         
-        driveTraindriveBackRight = new CANTalon(5);
+        driveTraindriveBackRight = new CANTalon(9);
         
         
-        driveTraindriveFrontLeft = new CANTalon(4);
+        driveTraindriveFrontLeft = new CANTalon(3);
         
         
         rangeFinderultrasonic = new Ultrasonic(0, 1);
         LiveWindow.addSensor("RangeFinder", "ultrasonic", rangeFinderultrasonic);
         
-        toteCollectortoteCollectorLeftTalon = new CANTalon(2);
+        toteCollectortoteCollectorLeftTalon = new CANTalon(20);
         
         
         toteCollectortoteCollectorRightTalon = new CANTalon(7);
@@ -110,10 +110,10 @@ public class RobotMap {
         elevatorelevatorStackHolder = new Solenoid(0, 6);
         LiveWindow.addActuator("Elevator", "elevatorStackHolder", elevatorelevatorStackHolder);
         
-        elevatorelevatorRollerTalon = new CANTalon(9);
+        elevatorelevatorRollerTalon = new CANTalon(19);
         
         
-        binCollectorbinCollectorTalon = new CANTalon(8);
+        binCollectorbinCollectorTalon = new CANTalon(18);
         
         
         binCollectorbinCollectorSolenoid = new Solenoid(0, 7);
