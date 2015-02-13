@@ -173,8 +173,10 @@ public class Elevator extends Subsystem {
     }
     
     // USED IF COMMAND IS INTERRUPTED AND POSITION NEEDS TO BE INBETWEEN
-    public void setStopPointBetween(){
+    public void setBetween(){
     	stopPoint = BETWEEN;
+    	pistonStop();
+    	
     }
     
     // Method used by move that does the checks when moving down

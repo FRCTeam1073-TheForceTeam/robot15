@@ -19,8 +19,7 @@ import org.usfirst.frc1073.robot15.Robot;
  */
 public class  BinCollect extends Command {
 	
-    public BinCollect() 
-    {
+    public BinCollect() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -35,14 +34,8 @@ public class  BinCollect extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() 
-    {
-    	/*
-    	if(!Robot.binCollector.getState()){
-    		Robot.binCollector.open(); // see comments in bin collector
-    	}
-    	else Robot.binCollector.close(); // see comments in bin collector
-    	*/
+    protected void execute() {
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
