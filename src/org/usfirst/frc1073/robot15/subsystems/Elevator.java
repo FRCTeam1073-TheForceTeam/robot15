@@ -333,6 +333,10 @@ public class Elevator extends Subsystem {
     	if(getStopPoint() == STACK_EXISTING) position = "In position to stack on an existing tote";
     	SmartDashboard.putString("Position: ", position);
     }
+    public double irReadout()
+    {
+    	return irSensor.getValue();
+    }
     
 }
 
