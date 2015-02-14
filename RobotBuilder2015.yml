@@ -163,6 +163,16 @@ Children:
           default: '0'
           name: Input Channel (Digital)
           validators: &id008 [DigitalChannel]
+          value: '0'
+      Base: Digital Input
+      Name: elevatorMagBottom
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id008
           value: '3'
       Base: Digital Input
       Name: elevatorMagLow
@@ -834,7 +844,7 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Derek\workspace',
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: /Users/nnapior/workspace,
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ../}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
