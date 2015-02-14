@@ -54,7 +54,9 @@ public class  Drive extends Command {
     	}
     	
     	Robot.driveTrain.move(x, y, twist);
-
+    	double voltsScale = SmartDashboard.getNumber("voltsPerCM: ");
+    	Robot.rangeFinder.changeCMScale(voltsScale);
+    	SmartDashboard.putNumber("Distance in CM: ", Robot.rangeFinder.getDistance()); 
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
