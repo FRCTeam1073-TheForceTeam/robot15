@@ -39,10 +39,11 @@ public class RobotMap {
     public static CANTalon toteCollectortoteCollectorRightTalon;
     public static Solenoid toteCollectortoteCollectorSolenoid;
     public static Solenoid totePunchertotePucherSolenoid;
+    public static Solenoid elevatorelevatorSecondStageSolenoid;
+    public static Solenoid elevatorelevatorFirstStageSolenoid;
     public static DigitalInput elevatorelevatorMagLow;
     public static DigitalInput elevatorelevatorMagMed;
     public static DigitalInput elevatorelevatorMagHigh;
-    public static DoubleSolenoid elevatorelevatorDoubleSolenoid;
     public static AnalogInput elevatorirSensor;
     public static DigitalInput elevatorlimitSwitch;
     public static Solenoid elevatorelevatorStackHolderSolenoid;
@@ -73,7 +74,7 @@ public class RobotMap {
         rangeFinderultrasonic = new Ultrasonic(0, 1);
         LiveWindow.addSensor("RangeFinder", "ultrasonic", rangeFinderultrasonic);
         
-        toteCollectortoteCollectorLeftTalon = new CANTalon(6);
+        toteCollectortoteCollectorLeftTalon = new CANTalon(4);
         
         
         toteCollectortoteCollectorRightTalon = new CANTalon(7);
@@ -85,6 +86,12 @@ public class RobotMap {
         totePunchertotePucherSolenoid = new Solenoid(1, 3);
         LiveWindow.addActuator("TotePuncher", "totePucherSolenoid", totePunchertotePucherSolenoid);
         
+        elevatorelevatorSecondStageSolenoid = new Solenoid(1, 5);
+        LiveWindow.addActuator("Elevator", "elevatorSecondStageSolenoid", elevatorelevatorSecondStageSolenoid);
+        
+        elevatorelevatorFirstStageSolenoid = new Solenoid(1, 4);
+        LiveWindow.addActuator("Elevator", "elevatorFirstStageSolenoid", elevatorelevatorFirstStageSolenoid);
+        
         elevatorelevatorMagLow = new DigitalInput(3);
         LiveWindow.addSensor("Elevator", "elevatorMagLow", elevatorelevatorMagLow);
         
@@ -93,9 +100,6 @@ public class RobotMap {
         
         elevatorelevatorMagHigh = new DigitalInput(5);
         LiveWindow.addSensor("Elevator", "elevatorMagHigh", elevatorelevatorMagHigh);
-        
-        elevatorelevatorDoubleSolenoid = new DoubleSolenoid(1, 4, 5);      
-        LiveWindow.addActuator("Elevator", "elevatorDoubleSolenoid", elevatorelevatorDoubleSolenoid);
         
         elevatorirSensor = new AnalogInput(1);
         LiveWindow.addSensor("Elevator", "irSensor", elevatorirSensor);
@@ -106,10 +110,10 @@ public class RobotMap {
         elevatorelevatorStackHolderSolenoid = new Solenoid(1, 1);
         LiveWindow.addActuator("Elevator", "elevatorStackHolderSolenoid", elevatorelevatorStackHolderSolenoid);
         
-        elevatorelevatorRollerTalon = new CANTalon(5);
+        elevatorelevatorRollerTalon = new CANTalon(6);
         
         
-        binCollectorbinCollectorTalon = new CANTalon(4);
+        binCollectorbinCollectorTalon = new CANTalon(5);
         
         
         binCollectorbinCollectorSolenoid = new Solenoid(1, 2);

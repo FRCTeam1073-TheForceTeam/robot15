@@ -34,8 +34,8 @@ public class ToteCollector extends Subsystem {
     private final double WHEEL_SPEED = 0.5; // constant to define speed... MIGHT NEED TO BE CHANGED
     
     // Easy to use booleans for valves
-    private final boolean OPEN = true;
-    private final boolean CLOSE = false;
+    private final boolean CLOSE = true;
+    private final boolean OPEN = false;
     
     private boolean isClosed;
     
@@ -52,16 +52,16 @@ public class ToteCollector extends Subsystem {
     }
     
     // Method to spread to collector open
-    public void open(){
+    public void close(){
     	isClosed = false;
-    	toteCollectorSolenoid.set(OPEN);
+    	toteCollectorSolenoid.set(CLOSE);
     	// SmartDashboard.putBoolean("Tote Collector Collecting", isClosed); for testing
     }
     
     // Method to close the collector together
-    public void close(){
+    public void open(){
     	isClosed = true;
-    	toteCollectorSolenoid.set(CLOSE);
+    	toteCollectorSolenoid.set(OPEN);
     	// SmartDashboard.putBoolean("Tote Collector Collecting", isClosed); for testing
     }
     
