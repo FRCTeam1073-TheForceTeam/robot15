@@ -31,7 +31,7 @@ public class  Stack extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.move(2);
+    	//Robot.elevator.move(2);
     }
 
     // Called repeatedly when this Command is scheduled to run

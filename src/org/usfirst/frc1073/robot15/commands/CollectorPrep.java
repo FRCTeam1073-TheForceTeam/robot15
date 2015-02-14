@@ -30,9 +30,9 @@ public class  CollectorPrep extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.toteCollector.open();
-    	Robot.elevator.move(0);
-    	Robot.elevator.stackHold();
+    	//Robot.toteCollector.open();
+    	//Robot.elevator.move(Robot.elevator.);
+    	//Robot.elevator.stackHold();
     }
 
     // Called repeatedly when this Command is scheduled to run
