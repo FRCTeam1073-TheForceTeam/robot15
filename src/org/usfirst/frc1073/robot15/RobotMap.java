@@ -34,11 +34,10 @@ public class RobotMap {
     public static CANTalon driveTraindriveBackLeft;
     public static CANTalon driveTraindriveBackRight;
     public static CANTalon driveTraindriveFrontLeft;
-    public static Ultrasonic rangeFinderultrasonic;
+    public static AnalogInput rangeFinderultrasonic;
     public static CANTalon toteCollectortoteCollectorLeftTalon;
     public static CANTalon toteCollectortoteCollectorRightTalon;
     public static Solenoid toteCollectortoteCollectorSolenoid;
-    public static Solenoid totePunchertotePucherSolenoid;
     public static Solenoid elevatorelevatorSecondStageSolenoid;
     public static Solenoid elevatorelevatorFirstStageSolenoid;
     public static DigitalInput elevatorelevatorMagLow;
@@ -71,7 +70,7 @@ public class RobotMap {
         driveTraindriveFrontLeft = new CANTalon(3);
         
         
-        rangeFinderultrasonic = new Ultrasonic(0, 1);
+        rangeFinderultrasonic = new AnalogInput(2);
         LiveWindow.addSensor("RangeFinder", "ultrasonic", rangeFinderultrasonic);
         
         toteCollectortoteCollectorLeftTalon = new CANTalon(4);
@@ -82,9 +81,6 @@ public class RobotMap {
         
         toteCollectortoteCollectorSolenoid = new Solenoid(1, 0);
         LiveWindow.addActuator("ToteCollector", "toteCollectorSolenoid", toteCollectortoteCollectorSolenoid);
-        
-        totePunchertotePucherSolenoid = new Solenoid(1, 3);
-        LiveWindow.addActuator("TotePuncher", "totePucherSolenoid", totePunchertotePucherSolenoid);
         
         elevatorelevatorSecondStageSolenoid = new Solenoid(1, 5);
         LiveWindow.addActuator("Elevator", "elevatorSecondStageSolenoid", elevatorelevatorSecondStageSolenoid);

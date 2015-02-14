@@ -76,7 +76,7 @@ public class Dashboard extends Subsystem {
 	{
 		SmartDashboard.putNumber("Driving Mode", CubicRel(Robot.driveTrain.isCubicDrive(), Robot.driveTrain.isFieldRelative()));
 		SmartDashboard.putNumber("Tote Count", Robot.elevator.getTotesHeld());
-		SmartDashboard.putNumber("Distance Widget", Robot.rangeFinder.getDistance());
+		// SmartDashboard.putNumber("Distance Widget", Robot.rangeFinder.getDistance()); needs to be reworked
 		SmartDashboard.putNumber("ToteCollectorInfo", collectPunch(Robot.toteCollector.isCollecting(), Robot.toteCollector.isPurging(), Robot.binCollector.isCollecting(), Robot.binCollector.islowering()));
 		SmartDashboard.putNumber("Battery", DriverStation.getInstance().getBatteryVoltage());
 		SmartDashboard.putBoolean("Claw", Robot.binCollector.getState());
