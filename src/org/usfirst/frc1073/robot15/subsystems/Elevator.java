@@ -102,12 +102,12 @@ public class Elevator extends Subsystem {
     
     // Method to collect the rollers to role in a tote
     public void rollersCollect(){
-    	elevatorRollerTalon.set(ROLLER_SPEED);
+    	elevatorRollerTalon.set(-ROLLER_SPEED);
     }
     
     // Method ejects the totes on rolers
     public void rollersPurge(){
-    	elevatorRollerTalon.set(-ROLLER_SPEED);
+    	elevatorRollerTalon.set(ROLLER_SPEED);
     }
     
     // Method to turn the rolers off
@@ -212,33 +212,66 @@ public class Elevator extends Subsystem {
 	    	default:
 	    	}
 	    case AT_0:
+	    	currentState = elevState.FLOOR_0;
 	    	if(goToState == elevState.FLOOR_0){
 	    		pistonStop();
 	    		currentTrigger = trigState.NOTHING;
 	    	}
-	    	currentState = elevState.FLOOR_0;
+	    	else if(goToState.ordinal() > currentState.ordinal()){
+	    		currentTrigger = trigState.UP;
+	    		pistonIn();
+	    	}
+	    	else { // This accounts that you must be going down
+	    		currentTrigger = trigState.DOWN;
+	    		pistonOut();
+	    	}
 	    	break;
 	    case AT_1:
+	    	currentState = elevState.FLOOR_1;
 	    	if(goToState == elevState.FLOOR_1){
 	    		pistonStop();
 	    		currentTrigger = trigState.NOTHING;
 	    	}
-	    	currentState = elevState.FLOOR_1;
+	    	else if(goToState.ordinal() > currentState.ordinal()){
+	    		currentTrigger = trigState.UP;
+	    		pistonIn();
+	    	}
+	    	else { // This accounts that you must be going down
+	    		currentTrigger = trigState.DOWN;
+	    		pistonOut();
+	    	}
 	    	break;
 	    case AT_2:
+	    	currentState = elevState.FLOOR_2;
 	    	if(goToState == elevState.FLOOR_2){
 	    		pistonStop();
 	    		currentTrigger = trigState.NOTHING;
 	    	}
-	    	currentState = elevState.FLOOR_2;
+	    	else if(goToState.ordinal() > currentState.ordinal()){
+	    		currentTrigger = trigState.UP;
+	    		pistonIn();
+	    	}
+	    	else { // This accounts that you must be going down
+	    		currentTrigger = trigState.DOWN;
+	    		pistonOut();
+	    	}
 	    	break;
 	    case AT_3:
-	    	if(goToState == elevState.FLOOR_3){
-	    	pistonStop();
-	    	currentTrigger = trigState.NOTHING;
+	    	currentState = elevState.FLOOR_0;
+	    	if(goToState == elevState.FLOOR_0){
+	    		pistonStop();
+	    		currentTrigger = trigState.NOTHING;
 	    	}
-	    	currentState = elevState.FLOOR_3;
+	    	else if(goToState.ordinal() > currentState.ordinal()){
+	    		currentTrigger = trigState.UP;
+	    		pistonIn();
+	    	}
+	    	else { // This accounts that you must be going down
+	    		currentTrigger = trigState.DOWN;
+	    		pistonOut();
+	    	}
 	    	break;
+	    default:
     	}
     	
     }
@@ -281,9 +314,10 @@ public class Elevator extends Subsystem {
     
     // Method for puting the information on the dashboard while testing
     public void testingInformation(){
-    	SmartDashboard.putBoolean("Bottom mag reading: ", elevatorMagLow.get());
-    	SmartDashboard.putBoolean("Bottom mag reading: ", elevatorMagMed.get());
-    	SmartDashboard.putBoolean("Bottom mag reading: ", elevatorMagHigh.get());
+    	SmartDashboard.putBoolean("bottom mag reading: ", elevatorMagBottom.get());
+    	SmartDashboard.putBoolean("low mag reading: ", elevatorMagLow.get());
+    	SmartDashboard.putBoolean("med mag reading: ", elevatorMagMed.get());
+    	SmartDashboard.putBoolean("high mag reading: ", elevatorMagHigh.get());
     	elevatorDashboard();
     	stateDashboard();
     }

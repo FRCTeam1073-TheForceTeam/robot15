@@ -13,16 +13,13 @@ package org.usfirst.frc1073.robot15.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc1073.robot15.Robot;
-import org.usfirst.frc1073.robot15.subsystems.Elevator;
 
 /**
  *
  */
-public class  ToGroundFloor extends Command {
+public class  TestElevatorStop extends Command {
 
-	boolean done = false;
-	
-    public ToGroundFloor() {
+    public TestElevatorStop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -34,35 +31,24 @@ public class  ToGroundFloor extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	/*Robot.elevator.move(0);
-    	Robot.binCollector.open();
-    	Robot.binCollector.binLift();
-    	Robot.toteCollector.open(); */
+    	Robot.elevator.pistonStop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	/*if (Robot.elevator.getStopPoint() == 0 && Robot.elevator.getState() == 0) {
-    		Robot.toteCollector.wheelsPurge();
-    		Robot.elevator.rollersPurge();
-    	}*/    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	/*Robot.toteCollector.wheelsOff();
-    	Robot.elevator.rollersOff();
-    	Robot.binCollector.close();*/
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }
