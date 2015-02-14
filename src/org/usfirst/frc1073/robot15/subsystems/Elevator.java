@@ -29,6 +29,7 @@ public class Elevator extends Subsystem {
     Solenoid elevatorSecondStageSolenoid = RobotMap.elevatorelevatorSecondStageSolenoid;
     Solenoid elevatorFirstStageSolenoid = RobotMap.elevatorelevatorFirstStageSolenoid;
     DigitalInput elevatorMagBottom = RobotMap.elevatorelevatorMagBottom;
+    DigitalInput elevatorMagClearanceLevel = RobotMap.elevatorelevatorMagClearanceLevel;
     DigitalInput elevatorMagLow = RobotMap.elevatorelevatorMagLow;
     DigitalInput elevatorMagMed = RobotMap.elevatorelevatorMagMed;
     DigitalInput elevatorMagHigh = RobotMap.elevatorelevatorMagHigh;
@@ -67,6 +68,9 @@ public class Elevator extends Subsystem {
     private elevState currentState = elevState.FLOOR_0;
     private trigState currentTrigger = trigState.AT_0;
 
+    private boolean isClearance = false; // For when enabling clearance mode
+    private boolean doneClearance = false;
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
@@ -149,6 +153,28 @@ public class Elevator extends Subsystem {
     // Returns the state of elevator
     public int getState(){
     	return state;
+    }
+    
+    public boolean getClearanceDone(){
+    	return doneClearance;
+    }
+    
+    // Moves it up slightly in order to drive
+    public void clearance(){
+    	if(currentState == elevState.FLOOR_0){
+	    	isClearance = !isClearance;
+	    	if(isClearance){
+	    		if(!elevatorMagClearanceLevel.get()){
+	    			pistonStop();
+	    			doneClearance = true;
+	    		}
+	    		else pistonIn();
+	    	}
+	    	else {
+	    		pistonOut();
+	    		if(elevatorMagBottom.get()) pistonStop();
+	    	}
+    	}
     }
     
     public void move(elevState goToState){
