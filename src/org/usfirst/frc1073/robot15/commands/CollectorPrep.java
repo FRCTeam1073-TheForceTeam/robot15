@@ -33,17 +33,17 @@ public class  CollectorPrep extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.collectorWrists.open();
-    	Robot.elevator.move(Elevator.elevState.FLOOR_0);
     	Robot.elevator.stackHold();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.elevator.move(Elevator.elevState.FLOOR_0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return Robot.elevator.getElev;
     }
 
     // Called once after isFinished returns true
