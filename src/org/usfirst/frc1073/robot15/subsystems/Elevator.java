@@ -362,6 +362,7 @@ public class Elevator extends Subsystem {
     // Method for puting the information on the dashboard while testing
     public void testingInformation(){
     	SmartDashboard.putBoolean("bottom mag reading: ", elevatorMagBottom.get());
+    	SmartDashboard.putBoolean("clearance mag reading: ", elevatorMagClearance.get());
     	SmartDashboard.putBoolean("low mag reading: ", elevatorMagLow.get());
     	SmartDashboard.putBoolean("med mag reading: ", elevatorMagMed.get());
     	SmartDashboard.putBoolean("high mag reading: ", elevatorMagHigh.get());
