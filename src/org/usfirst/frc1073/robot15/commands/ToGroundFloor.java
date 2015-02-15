@@ -12,15 +12,15 @@
 package org.usfirst.frc1073.robot15.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc1073.robot15.Robot;
 import org.usfirst.frc1073.robot15.subsystems.Elevator;
+import org.usfirst.frc1073.robot15.subsystems.Elevator.elevState;
 
 /**
  *
  */
 public class  ToGroundFloor extends Command {
-
-	boolean done = false;
 	
     public ToGroundFloor() {
         // Use requires() here to declare subsystem dependencies
@@ -34,18 +34,23 @@ public class  ToGroundFloor extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	/*Robot.elevator.move(0);
     	Robot.binCollector.open();
     	Robot.binCollector.binLift();
-    	Robot.toteCollector.open(); */
+    	Robot.collectorWrists.open();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	/*if (Robot.elevator.getStopPoint() == 0 && Robot.elevator.getState() == 0) {
-    		Robot.toteCollector.wheelsPurge();
+
+    	if (Robot.elevator.elevatorState() == 0) {
+    		Robot.elevator.pistonStop();
+    		Robot.collectorWheels.wheelsPurge();
     		Robot.elevator.rollersPurge();
-    	}*/    	
+    	}
+    	else
+    	{
+        	Robot.elevator.move(elevState.FLOOR_0);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -55,9 +60,9 @@ public class  ToGroundFloor extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	/*Robot.toteCollector.wheelsOff();
+    	Robot.collectorWheels.wheelsOff();
     	Robot.elevator.rollersOff();
-    	Robot.binCollector.close();*/
+    	Robot.binCollector.close();
     }
 
     // Called when another command which requires one or more of the same

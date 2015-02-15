@@ -12,7 +12,9 @@
 package org.usfirst.frc1073.robot15.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc1073.robot15.Robot;
+import org.usfirst.frc1073.robot15.subsystems.Elevator;
 
 /**
  *
@@ -32,29 +34,27 @@ public class  EjectPrep extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.elevator.move(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	/*if (Robot.elevator.getStopPoint() == 1 && Robot.elevator.getState() == 0)
-    	{
-        	Robot.elevator.stackDrop();
-        	done = true;
-    	}*/
+    	Robot.elevator.move(Elevator.elevState.FLOOR_1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done;
+        return Robot.elevator.elevatorState() == 2;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.elevator.stackDrop();
+    	Robot.elevator.pistonStop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
