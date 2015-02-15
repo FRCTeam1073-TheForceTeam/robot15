@@ -41,7 +41,7 @@ public class RobotMap {
     public static Solenoid elevatorelevatorSecondStageSolenoid;
     public static Solenoid elevatorelevatorFirstStageSolenoid;
     public static DigitalInput elevatorelevatorMagBottom;
-    public static DigitalInput elevatorelevatorMagClearanceLevel;
+    public static DigitalInput elevatorelevatorMagClearance;
     public static DigitalInput elevatorelevatorMagLow;
     public static DigitalInput elevatorelevatorMagMed;
     public static DigitalInput elevatorelevatorMagHigh;
@@ -93,8 +93,8 @@ public class RobotMap {
         elevatorelevatorMagBottom = new DigitalInput(0);
         LiveWindow.addSensor("Elevator", "elevatorMagBottom", elevatorelevatorMagBottom);
         
-        elevatorelevatorMagClearanceLevel = new DigitalInput(1);
-        LiveWindow.addSensor("Elevator", "elevatorMagClearanceLevel", elevatorelevatorMagClearanceLevel);
+        elevatorelevatorMagClearance = new DigitalInput(1);
+        LiveWindow.addSensor("Elevator", "elevatorMagClearance", elevatorelevatorMagClearance);
         
         elevatorelevatorMagLow = new DigitalInput(3);
         LiveWindow.addSensor("Elevator", "elevatorMagLow", elevatorelevatorMagLow);

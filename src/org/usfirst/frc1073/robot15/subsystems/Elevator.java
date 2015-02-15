@@ -29,7 +29,7 @@ public class Elevator extends Subsystem {
     Solenoid elevatorSecondStageSolenoid = RobotMap.elevatorelevatorSecondStageSolenoid;
     Solenoid elevatorFirstStageSolenoid = RobotMap.elevatorelevatorFirstStageSolenoid;
     DigitalInput elevatorMagBottom = RobotMap.elevatorelevatorMagBottom;
-    DigitalInput elevatorMagClearanceLevel = RobotMap.elevatorelevatorMagClearanceLevel;
+    DigitalInput elevatorMagClearance = RobotMap.elevatorelevatorMagClearance;
     DigitalInput elevatorMagLow = RobotMap.elevatorelevatorMagLow;
     DigitalInput elevatorMagMed = RobotMap.elevatorelevatorMagMed;
     DigitalInput elevatorMagHigh = RobotMap.elevatorelevatorMagHigh;
@@ -72,7 +72,7 @@ public class Elevator extends Subsystem {
      * 
      *********************/
     
-    public enum trigState { NOTHING, UP, DOWN, AT_0, AT_1, AT_2, AT_3 };
+    public enum trigState { NOTHING, UP, DOWN, AT_0, AT_1, AT_2, AT_3, AT_4 };
     
     private elevState currentState = elevState.FLOOR_0;
     private trigState currentTrigger = trigState.AT_0;
@@ -169,9 +169,10 @@ public class Elevator extends Subsystem {
     	
     	// Checks if the piston and if any return false updates the location of elevator
     	if(!elevatorMagBottom.get()) currentTrigger = trigState.AT_0;
-    	if(!elevatorMagLow.get()) currentTrigger = trigState.AT_1;
-    	if(!elevatorMagMed.get()) currentTrigger = trigState.AT_2;
-    	if(!elevatorMagHigh.get()) currentTrigger = trigState.AT_3;
+    	if(!elevatorMagClearance.get()) currentTrigger = trigState.AT_1;
+    	if(!elevatorMagLow.get()) currentTrigger = trigState.AT_2;
+    	if(!elevatorMagMed.get()) currentTrigger = trigState.AT_3;
+    	if(!elevatorMagHigh.get()) currentTrigger = trigState.AT_4;
     	
     	switch(currentTrigger) {
 	    case NOTHING:
@@ -181,9 +182,16 @@ public class Elevator extends Subsystem {
 	    	switch(currentState) {
 	    	case FLOOR_0:
 	    		pistonIn();
-	    		currentState = elevState.BETWEEN_0_1; // Leaving floor 1
+	    		currentState = elevState.BETWEEN_0_1; // Leaving floor 0
 	    		break;
 	    	case BETWEEN_0_1:
+	    		pistonIn();
+	    		break;
+	    	case FLOOR_1:
+	    		pistonIn();
+	    		currentState = elevState.BETWEEN_1_2; // leaving floor 1
+	    		break;
+	    	case BETWEEN_1_2:
 	    		pistonIn();
 	    		break;
 	    	case FLOOR_2:
@@ -194,12 +202,25 @@ public class Elevator extends Subsystem {
 	    		pistonIn();
 	    		break;
 	    	case FLOOR_3:
+	    		pistonIn();
+	    		currentState = elevState.BETWEEN_3_4; // Leaving floor 3
+	    		break;
+	    	case BETWEEN_3_4:
+	    		pistonIn();
+	    	case FLOOR_4:
 	    		pistonStop(); // Stops because it means you are at the top of the elevator
 	    		break;
 	    	default:
 	    	}
 	    case DOWN:
 	    	switch(currentState) {
+	    	case FLOOR_4:
+	    		pistonOut();
+	    		currentState = elevState.BETWEEN_3_4; // Leaving floor 4
+	    		break;
+	    	case BETWEEN_3_4:
+	    		pistonOut();
+	    		break;
 	    	case FLOOR_3:
 	    		pistonOut();
 	    		currentState = elevState.BETWEEN_2_3; // Leaving floor 3
@@ -217,6 +238,9 @@ public class Elevator extends Subsystem {
 	    	case FLOOR_1:
 	    		pistonOut();
 	    		currentState = elevState.BETWEEN_0_1; // Leaving floor 1
+	    		break;
+	    	case BETWEEN_0_1:
+	    		pistonOut();
 	    		break;
 	    	case FLOOR_0:
 	    		pistonStop(); // Stops because this is the bottom
@@ -269,8 +293,23 @@ public class Elevator extends Subsystem {
 	    	}
 	    	break;
 	    case AT_3:
-	    	currentState = elevState.FLOOR_0;
-	    	if(goToState == elevState.FLOOR_0){
+	    	currentState = elevState.FLOOR_3;
+	    	if(goToState == elevState.FLOOR_3){
+	    		pistonStop();
+	    		currentTrigger = trigState.NOTHING;
+	    	}
+	    	else if(goToState.ordinal() > currentState.ordinal()){
+	    		currentTrigger = trigState.UP;
+	    		pistonIn();
+	    	}
+	    	else { // This accounts that you must be going down
+	    		currentTrigger = trigState.DOWN;
+	    		pistonOut();
+	    	}
+	    	break;
+	    case AT_4:
+	    	currentState = elevState.FLOOR_4;
+	    	if(goToState == elevState.FLOOR_4){
 	    		pistonStop();
 	    		currentTrigger = trigState.NOTHING;
 	    	}
@@ -307,14 +346,17 @@ public class Elevator extends Subsystem {
     	if(currentState == elevState.FLOOR_1) position = "On Floor 1";
     	if(currentState == elevState.FLOOR_2) position = "On Floor 2";
     	if(currentState == elevState.FLOOR_3) position = "On Floor 3";
+    	if(currentState == elevState.FLOOR_4) position = "On Floor 4";
     	if(currentState == elevState.BETWEEN_0_1) position = "Between 0 and 1";
     	if(currentState == elevState.BETWEEN_1_2) position = "Between 1 and 2";
     	if(currentState == elevState.BETWEEN_2_3) position = "Between 2 and 3";
+    	if(currentState == elevState.BETWEEN_3_4) position = "Between 3 and 4";
     	
     	String triggerState = "";
     	if(currentTrigger == trigState.AT_0) triggerState = "At 0";
     	if(currentTrigger == trigState.AT_1) triggerState = "At 1";
     	if(currentTrigger == trigState.AT_2) triggerState = "At 2";
+    	if(currentTrigger == trigState.AT_3) triggerState = "At 3";
     	if(currentTrigger == trigState.AT_3) triggerState = "At 4";
     	if(currentTrigger == trigState.DOWN) triggerState = "Moving Down";
     	if(currentTrigger == trigState.UP) triggerState = "Moving Up";
