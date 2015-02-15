@@ -193,6 +193,10 @@ public class Elevator extends Subsystem {
     	magFloor3 = elevatorMagHigh.get();
     }
     
+    public int elevatorState(){
+    	return currentState.ordinal();
+    }
+    
     public void move(elevState goToState){
     	
     	if(goToState != currentState && !Robot.collectorWrists.getState()) Robot.collectorWrists.open(); // Moves the tote collector out of the way of elevator
