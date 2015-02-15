@@ -140,11 +140,15 @@ public class OI
 
         SmartDashboard.putData("WinchDown", new WinchDown());
 
+        SmartDashboard.putData("TestOpenContainer", new TestOpenContainer());
+
         SmartDashboard.putData("AutonomousBackup", new AutonomousBackup());
 
         SmartDashboard.putData("TestCollect", new TestCollect());
 
         SmartDashboard.putData("TestPurge", new TestPurge());
+
+        SmartDashboard.putData("TestCloseContainer", new TestCloseContainer());
 
         SmartDashboard.putData("TestClose", new TestClose());
 
