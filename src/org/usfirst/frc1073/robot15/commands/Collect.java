@@ -32,7 +32,7 @@ public class  Collect extends Command {
     protected void initialize() {
     	Robot.collectorWheels.wheelsCollect();
     	Robot.collectorWrists.close();
-    	//Robot.elevator.rollersCollect();
+    	Robot.elevator.rollersCollect();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -48,7 +48,7 @@ public class  Collect extends Command {
     protected void end() {
     	Robot.collectorWheels.wheelsOff();
     	Robot.collectorWrists.open();
-    //	Robot.elevator.rollersOff();
+    	Robot.elevator.rollersOff();
     }
 
     // Called when another command which requires one or more of the same

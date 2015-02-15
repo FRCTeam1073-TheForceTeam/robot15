@@ -12,7 +12,9 @@
 package org.usfirst.frc1073.robot15.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc1073.robot15.Robot;
+import org.usfirst.frc1073.robot15.subsystems.Elevator;
 
 /**
  *
@@ -30,9 +32,9 @@ public class  CollectorPrep extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.toteCollector.open();
-    	//Robot.elevator.move(Robot.elevator.);
-    	//Robot.elevator.stackHold();
+    	Robot.collectorWrists.open();
+    	Robot.elevator.move(Elevator.elevState.FLOOR_0);
+    	Robot.elevator.stackHold();
     }
 
     // Called repeatedly when this Command is scheduled to run

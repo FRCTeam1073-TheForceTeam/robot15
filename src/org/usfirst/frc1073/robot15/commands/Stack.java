@@ -12,7 +12,9 @@
 package org.usfirst.frc1073.robot15.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc1073.robot15.Robot;
+import org.usfirst.frc1073.robot15.subsystems.Elevator;
 
 /**
  *
@@ -31,7 +33,7 @@ public class  Stack extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//Robot.elevator.move(2);
+    	Robot.elevator.move(Elevator.elevState.FLOOR_2);
     }
 
     // Called repeatedly when this Command is scheduled to run
