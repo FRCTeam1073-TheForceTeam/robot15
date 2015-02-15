@@ -103,6 +103,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        elevator.updateMag();
     }
 
     public void teleopInit() {
@@ -118,7 +119,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        elevator.testingInformation();
+        elevator.testingInformation(); // For testing
+        elevator.updateMag();
         
     }
 
