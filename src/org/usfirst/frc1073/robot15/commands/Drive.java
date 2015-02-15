@@ -21,6 +21,8 @@ import org.usfirst.frc1073.robot15.Robot;
  */
 public class  Drive extends Command {
 
+	private final float TWISTMOD = 0.7f;
+	
     public Drive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -41,7 +43,7 @@ public class  Drive extends Command {
     	
     	float x = (float) Robot.oi.driver.getX();
     	float y = (float) Robot.oi.driver.getY();
-    	float twist = (float) Robot.oi.driver.getTwist(); 
+    	float twist = (float) Robot.oi.driver.getTwist() * TWISTMOD; 
     	
     	if(Math.abs(x) <= 0.05){
     		x = 0;
