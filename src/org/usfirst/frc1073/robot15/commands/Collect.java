@@ -30,8 +30,8 @@ public class  Collect extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.toteCollector.wheelsCollect();
-    	Robot.toteCollector.close();
+    	Robot.collectorWheels.wheelsCollect();
+    	Robot.collectorWrists.close();
     	//Robot.elevator.rollersCollect();
     }
 
@@ -46,8 +46,8 @@ public class  Collect extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.toteCollector.wheelsOff();
-    	Robot.toteCollector.open();
+    	Robot.collectorWheels.wheelsOff();
+    	Robot.collectorWrists.open();
     //	Robot.elevator.rollersOff();
     }
 
