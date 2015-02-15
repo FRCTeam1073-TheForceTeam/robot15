@@ -48,12 +48,12 @@ public class BinCollector extends Subsystem
     
     // Method to lift the bin
     public void binLift() {
-    	binCollectorTalon.set(SPEED);
+    	binCollectorTalon.set(-SPEED);
     }
     
     // Method to lower the bin
     public void binLower() {
-    	binCollectorTalon.set(-SPEED);
+    	binCollectorTalon.set(SPEED);
     }
     
     // Method to stop the bin motor
