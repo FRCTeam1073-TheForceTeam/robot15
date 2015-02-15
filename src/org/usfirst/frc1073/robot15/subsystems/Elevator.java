@@ -29,7 +29,6 @@ public class Elevator extends Subsystem {
     Solenoid elevatorSecondStageSolenoid = RobotMap.elevatorelevatorSecondStageSolenoid;
     Solenoid elevatorFirstStageSolenoid = RobotMap.elevatorelevatorFirstStageSolenoid;
     DigitalInput elevatorMagBottom = RobotMap.elevatorelevatorMagBottom;
-    DigitalInput elevatorMagClearance = RobotMap.elevatorelevatorMagClearance;
     DigitalInput elevatorMagLow = RobotMap.elevatorelevatorMagLow;
     DigitalInput elevatorMagMed = RobotMap.elevatorelevatorMagMed;
     DigitalInput elevatorMagHigh = RobotMap.elevatorelevatorMagHigh;
@@ -62,15 +61,14 @@ public class Elevator extends Subsystem {
     private final int PISTON_IN = 2;
     
     // Reordering these enums may result in death. To you, your dog, and fatal to the code
-    public enum elevState { FLOOR_0, BETWEEN_0_1, FLOOR_1, BETWEEN_1_2, FLOOR_2, BETWEEN_2_3, FLOOR_3, BETWEEN_3_4, FLOOR_4 };
+    public enum elevState { FLOOR_0, BETWEEN_0_1, FLOOR_1, BETWEEN_1_2, FLOOR_2, BETWEEN_2_3, FLOOR_3 };
     /************************************************************
      * 
      * Floor Levels:
      *  FLOOR_0 = is the bottom of the piston
-     *  FLOOR_1 = is the 1" raise for driving
-     *  FLOOR_2 = is the 6" lift
-     *  FLOOR_3 = is the 12" lift
-     *  FLOOR_4 = the max piston out
+     *  FLOOR_1 = is the 6" lift
+     *  FLOOR_2 = is the 12" lift
+     *  FLOOR_3 = the max piston out
      *  
      * Between States:
      *  All of the between states are just states which means
@@ -79,7 +77,7 @@ public class Elevator extends Subsystem {
      * 
      ***********************************************************/
     
-    public enum trigState { NOTHING, UP, DOWN, AT_0, AT_1, AT_2, AT_3, AT_4 };
+    public enum trigState { NOTHING, UP, DOWN, AT_0, AT_1, AT_2, AT_3 };
     /************************************************************
      * 
      * NOTHING = a state where the piston is stopped and no 
@@ -90,7 +88,7 @@ public class Elevator extends Subsystem {
      * DOWN = the state which says it is going down and does the
      *  calculations.
      * 
-     * AT_0, AT_1, AT_2, AT_3, AT_4 = States that say the 
+     * AT_0, AT_1, AT_2, AT_3 = States that say the 
      *  elevator is at those positions.
      * 
      ***********************************************************/
@@ -102,7 +100,6 @@ public class Elevator extends Subsystem {
     private boolean magFloor1;
     private boolean magFloor2;
     private boolean magFloor3;
-    private boolean magFloor4;
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -191,15 +188,14 @@ public class Elevator extends Subsystem {
     // Method to call the magnet encoders to always update them
     public void updateMag(){
     	magFloor0 = elevatorMagBottom.get();
-    	magFloor1 = elevatorMagClearance.get();
-    	magFloor2 = elevatorMagLow.get();
-    	magFloor3 = elevatorMagMed.get();
-    	magFloor4 = elevatorMagHigh.get();
+    	magFloor1 = elevatorMagLow.get();
+    	magFloor2 = elevatorMagMed.get();
+    	magFloor3 = elevatorMagHigh.get();
     }
     
     public void move(elevState goToState){
     	
-    	if(goToState != currentState && !Robot.toteCollector.getState()) Robot.toteCollector.open(); // Moves the tote collector out of the way of elevator
+    	if(goToState != currentState && !Robot.collectorWrists.getState()) Robot.collectorWrists.open(); // Moves the tote collector out of the way of elevator
     	
     	// These check which direction to go in
     	if(goToState == currentState) currentTrigger = trigState.NOTHING; // If the user is already there
@@ -211,7 +207,6 @@ public class Elevator extends Subsystem {
     	if(!magFloor1) currentTrigger = trigState.AT_1;
     	if(!magFloor2) currentTrigger = trigState.AT_2;
     	if(!magFloor3) currentTrigger = trigState.AT_3;
-    	if(!magFloor4) currentTrigger = trigState.AT_4;
     	
     	switch(currentTrigger) {
 	    case NOTHING:
@@ -241,25 +236,12 @@ public class Elevator extends Subsystem {
 	    		pistonIn();
 	    		break;
 	    	case FLOOR_3:
-	    		pistonIn();
-	    		currentState = elevState.BETWEEN_3_4; // Leaving floor 3
-	    		break;
-	    	case BETWEEN_3_4:
-	    		pistonIn();
-	    	case FLOOR_4:
 	    		pistonStop(); // Stops because it means you are at the top of the elevator
 	    		break;
 	    	default:
 	    	}
 	    case DOWN:
 	    	switch(currentState) {
-	    	case FLOOR_4:
-	    		pistonOut();
-	    		currentState = elevState.BETWEEN_3_4; // Leaving floor 4
-	    		break;
-	    	case BETWEEN_3_4:
-	    		pistonOut();
-	    		break;
 	    	case FLOOR_3:
 	    		pistonOut();
 	    		currentState = elevState.BETWEEN_2_3; // Leaving floor 3
@@ -337,25 +319,10 @@ public class Elevator extends Subsystem {
 	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
-	    		currentState = elevState.BETWEEN_3_4;
-	    		pistonIn();
+	    		pistonStop(); // At the top so no greater position
 	    	}
 	    	else { // This accounts that you must be going down
 	    		currentState = elevState.BETWEEN_2_3;
-	    		pistonOut();
-	    	}
-	    	break;
-	    case AT_4:
-	    	currentState = elevState.FLOOR_4;
-	    	if(goToState == elevState.FLOOR_4){
-	    		pistonStop();
-	    		currentTrigger = trigState.NOTHING;
-	    	}
-	    	else if(goToState.ordinal() > currentState.ordinal()){
-	    		pistonStop();
-	    	}
-	    	else { // This accounts that you must be going down
-	    		currentState = elevState.BETWEEN_3_4;
 	    		pistonOut();
 	    	}
 	    	break;
@@ -383,18 +350,15 @@ public class Elevator extends Subsystem {
     	if(currentState == elevState.FLOOR_1) position = "On Floor 1";
     	if(currentState == elevState.FLOOR_2) position = "On Floor 2";
     	if(currentState == elevState.FLOOR_3) position = "On Floor 3";
-    	if(currentState == elevState.FLOOR_4) position = "On Floor 4";
     	if(currentState == elevState.BETWEEN_0_1) position = "Between 0 and 1";
     	if(currentState == elevState.BETWEEN_1_2) position = "Between 1 and 2";
     	if(currentState == elevState.BETWEEN_2_3) position = "Between 2 and 3";
-    	if(currentState == elevState.BETWEEN_3_4) position = "Between 3 and 4";
     	
     	String triggerState = "";
     	if(currentTrigger == trigState.AT_0) triggerState = "At 0";
     	if(currentTrigger == trigState.AT_1) triggerState = "At 1";
     	if(currentTrigger == trigState.AT_2) triggerState = "At 2";
     	if(currentTrigger == trigState.AT_3) triggerState = "At 3";
-    	if(currentTrigger == trigState.AT_3) triggerState = "At 4";
     	if(currentTrigger == trigState.DOWN) triggerState = "Moving Down";
     	if(currentTrigger == trigState.UP) triggerState = "Moving Up";
     	if(currentTrigger == trigState.NOTHING) triggerState = "Doing Nothing";
@@ -406,7 +370,6 @@ public class Elevator extends Subsystem {
     // Method for puting the information on the dashboard while testing
     public void testingInformation(){
     	SmartDashboard.putBoolean("bottom mag reading: ", elevatorMagBottom.get());
-    	SmartDashboard.putBoolean("clearance mag reading: ", elevatorMagClearance.get());
     	SmartDashboard.putBoolean("low mag reading: ", elevatorMagLow.get());
     	SmartDashboard.putBoolean("med mag reading: ", elevatorMagMed.get());
     	SmartDashboard.putBoolean("high mag reading: ", elevatorMagHigh.get());
