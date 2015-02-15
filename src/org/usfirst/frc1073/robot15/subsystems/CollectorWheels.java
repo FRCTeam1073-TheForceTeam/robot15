@@ -45,18 +45,14 @@ public class CollectorWheels extends Subsystem {
     
     // Method to spin the wheels to collect a tote
     public void wheelsCollect() {
-    	if (Robot.collectorWrists.getState()) {
-    		toteCollectorLeftTalon.set(WHEEL_SPEED);
-        	toteCollectorRightTalon.set(-WHEEL_SPEED);
-    	}
+    		toteCollectorLeftTalon.set(-WHEEL_SPEED);
+        	toteCollectorRightTalon.set(WHEEL_SPEED);
     }
     
     // Method to spin the wheels to purge a tote
     public void wheelsPurge() {
-    	if (!Robot.collectorWrists.getState()) {
-    		toteCollectorLeftTalon.set(-WHEEL_SPEED);
-        	toteCollectorRightTalon.set(WHEEL_SPEED);
-    	}
+    		toteCollectorLeftTalon.set(WHEEL_SPEED);
+        	toteCollectorRightTalon.set(-WHEEL_SPEED);
     }
     
     // Method to turn the wheel motors off
@@ -66,20 +62,16 @@ public class CollectorWheels extends Subsystem {
     }
     
     //returns true if it is collecting
-    public boolean isCollecting()
-    {
-    	if(toteCollectorLeftTalon.getSetpoint() > 0)
-    	{
+    public boolean isCollecting(){
+    	if(toteCollectorLeftTalon.getSetpoint() > 0){
     		return true;
     	}
     	return false;
     }
     
     //returns true if it is purging
-    public boolean isPurging()
-    {
-    	if(toteCollectorLeftTalon.getSetpoint() < 0)
-    	{
+    public boolean isPurging(){
+    	if(toteCollectorLeftTalon.getSetpoint() < 0){
     		return true;
     	}
     	return false;

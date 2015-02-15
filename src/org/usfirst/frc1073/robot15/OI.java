@@ -122,6 +122,10 @@ public class OI
 
 	    
         // SmartDashboard Buttons
+        SmartDashboard.putData("TestHolders", new TestHolders());
+
+        SmartDashboard.putData("TestHoldersRelease", new TestHoldersRelease());
+
         SmartDashboard.putData("TestElevatorOut", new TestElevatorOut());
 
         SmartDashboard.putData("TestElevatorIn", new TestElevatorIn());
