@@ -193,6 +193,7 @@ public class Elevator extends Subsystem {
     	magFloor3 = elevatorMagHigh.get();
     }
     
+    // Returns the elevator state in int 
     public int elevatorState(){
     	return currentState.ordinal();
     }
@@ -204,13 +205,13 @@ public class Elevator extends Subsystem {
     	// These check which direction to go in
     	if(goToState == currentState) currentTrigger = trigState.NOTHING; // If the user is already there
     	else if(goToState.ordinal() > currentState.ordinal()) currentTrigger = trigState.UP;
-    	else currentTrigger = trigState.DOWN;
+    	else if(goToState.ordinal() <currentTrigger.ordinal()) currentTrigger = trigState.DOWN;
     	
     	// Checks if the piston and if any return false updates the location of elevator
     	if(!magFloor0) currentTrigger = trigState.AT_0;
-    	if(!magFloor1) currentTrigger = trigState.AT_1;
-    	if(!magFloor2) currentTrigger = trigState.AT_2;
-    	if(!magFloor3) currentTrigger = trigState.AT_3;
+    	else if(!magFloor1) currentTrigger = trigState.AT_1;
+    	else if(!magFloor2) currentTrigger = trigState.AT_2;
+    	else if(!magFloor3) currentTrigger = trigState.AT_3;
     	
     	switch(currentTrigger) {
 	    case NOTHING:
@@ -276,7 +277,6 @@ public class Elevator extends Subsystem {
 	    	currentState = elevState.FLOOR_0;
 	    	if(goToState == elevState.FLOOR_0){
 	    		pistonStop();
-	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
 	    		currentState = elevState.BETWEEN_0_1;
@@ -290,7 +290,6 @@ public class Elevator extends Subsystem {
 	    	currentState = elevState.FLOOR_1;
 	    	if(goToState == elevState.FLOOR_1){
 	    		pistonStop();
-	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
 	    		currentState = elevState.BETWEEN_1_2;
@@ -305,7 +304,6 @@ public class Elevator extends Subsystem {
 	    	currentState = elevState.FLOOR_2;
 	    	if(goToState == elevState.FLOOR_2){
 	    		pistonStop();
-	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
 	    		currentState = elevState.BETWEEN_2_3;
@@ -320,7 +318,6 @@ public class Elevator extends Subsystem {
 	    	currentState = elevState.FLOOR_3;
 	    	if(goToState == elevState.FLOOR_3){
 	    		pistonStop();
-	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
 	    		pistonStop(); // At the top so no greater position
@@ -350,6 +347,7 @@ public class Elevator extends Subsystem {
     public void elevatorDashboard(){
     	
     	String position = "";
+    	//String[] posArray = {"On Floor 0", "On Floor 1", 
     	if(currentState == elevState.FLOOR_0) position = "On Floor 0";
     	if(currentState == elevState.FLOOR_1) position = "On Floor 1";
     	if(currentState == elevState.FLOOR_2) position = "On Floor 2";
