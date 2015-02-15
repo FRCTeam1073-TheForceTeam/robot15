@@ -164,6 +164,7 @@ public class Elevator extends Subsystem {
     public void move(elevState goToState){
     	// These check which direction to go in
     	if(goToState == currentState) currentTrigger = trigState.NOTHING; // If the user is already there
+    	if(goToState != currentState && !Robot.toteCollector.getState()) Robot.toteCollector.open(); // Moves the tote collector out of the way of elevator
     	if(goToState.ordinal() > currentState.ordinal()) currentTrigger = trigState.UP;
     	if(goToState.ordinal() < currentState.ordinal()) currentTrigger = trigState.DOWN;
     	
