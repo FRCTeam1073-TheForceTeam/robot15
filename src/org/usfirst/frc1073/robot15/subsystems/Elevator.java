@@ -162,11 +162,13 @@ public class Elevator extends Subsystem {
     }
     
     public void move(elevState goToState){
+    	
+    	if(goToState != currentState && !Robot.toteCollector.getState()) Robot.toteCollector.open(); // Moves the tote collector out of the way of elevator
+    	
     	// These check which direction to go in
     	if(goToState == currentState) currentTrigger = trigState.NOTHING; // If the user is already there
-    	if(goToState != currentState && !Robot.toteCollector.getState()) Robot.toteCollector.open(); // Moves the tote collector out of the way of elevator
-    	if(goToState.ordinal() > currentState.ordinal()) currentTrigger = trigState.UP;
-    	if(goToState.ordinal() < currentState.ordinal()) currentTrigger = trigState.DOWN;
+    	else if(goToState.ordinal() > currentState.ordinal()) currentTrigger = trigState.UP;
+    	else currentTrigger = trigState.DOWN;
     	
     	// Checks if the piston and if any return false updates the location of elevator
     	if(!elevatorMagBottom.get()) currentTrigger = trigState.AT_0;
@@ -255,11 +257,9 @@ public class Elevator extends Subsystem {
 	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
-	    		currentTrigger = trigState.UP;
 	    		pistonIn();
 	    	}
 	    	else { // This accounts that you must be going down
-	    		currentTrigger = trigState.DOWN;
 	    		pistonOut();
 	    	}
 	    	break;
@@ -270,11 +270,9 @@ public class Elevator extends Subsystem {
 	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
-	    		currentTrigger = trigState.UP;
 	    		pistonIn();
 	    	}
 	    	else { // This accounts that you must be going down
-	    		currentTrigger = trigState.DOWN;
 	    		pistonOut();
 	    	}
 	    	break;
@@ -285,11 +283,9 @@ public class Elevator extends Subsystem {
 	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
-	    		currentTrigger = trigState.UP;
 	    		pistonIn();
 	    	}
 	    	else { // This accounts that you must be going down
-	    		currentTrigger = trigState.DOWN;
 	    		pistonOut();
 	    	}
 	    	break;
@@ -300,11 +296,9 @@ public class Elevator extends Subsystem {
 	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
-	    		currentTrigger = trigState.UP;
 	    		pistonIn();
 	    	}
 	    	else { // This accounts that you must be going down
-	    		currentTrigger = trigState.DOWN;
 	    		pistonOut();
 	    	}
 	    	break;
@@ -315,11 +309,9 @@ public class Elevator extends Subsystem {
 	    		currentTrigger = trigState.NOTHING;
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
-	    		currentTrigger = trigState.UP;
 	    		pistonIn();
 	    	}
 	    	else { // This accounts that you must be going down
-	    		currentTrigger = trigState.DOWN;
 	    		pistonOut();
 	    	}
 	    	break;

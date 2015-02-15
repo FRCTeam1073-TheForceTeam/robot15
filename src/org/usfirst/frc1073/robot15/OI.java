@@ -129,6 +129,10 @@ public class OI
 
         SmartDashboard.putData("FieldRel", new FieldRel());
 
+        SmartDashboard.putData("WinchUp", new WinchUp());
+
+        SmartDashboard.putData("WinchDown", new WinchDown());
+
         SmartDashboard.putData("AutonomousBackup", new AutonomousBackup());
 
         SmartDashboard.putData("TestCollect", new TestCollect());
