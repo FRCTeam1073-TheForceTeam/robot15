@@ -207,6 +207,7 @@ public class Elevator extends Subsystem {
     }
     
     public void move(elevState goToState){
+    	System.out.println("The goToState: " + goToState.toString());
     	
     	if(goToState != currentState && !Robot.collectorWrists.getState()) Robot.collectorWrists.open(); // Moves the tote collector out of the way of elevator
     	
@@ -223,32 +224,40 @@ public class Elevator extends Subsystem {
     	
     	switch(currentTrigger) {
 	    case NOTHING:
+	    	System.out.println("Trigger State Nothing");
 	    	pistonStop();
 	    	break;
 	    case UP:
 	    	switch(currentState) {
 	    	case FLOOR_0:
+	    		System.out.println("Trigger is UP and case is FLOOR_0");
 	    		pistonIn();
 	    		currentState = elevState.BETWEEN_0_1; // Leaving floor 0
 	    		break;
 	    	case BETWEEN_0_1:
+	    		System.out.println("Trigger is UP and case is BETWEEN_0_1");
 	    		pistonIn();
 	    		break;
 	    	case FLOOR_1:
+	    		System.out.println("Trigger is UP and case is FLOOR_1");
 	    		pistonIn();
 	    		currentState = elevState.BETWEEN_1_2; // leaving floor 1
 	    		break;
 	    	case BETWEEN_1_2:
+	    		System.out.println("Trigger is UP and case is BETWEEN_1_2");
 	    		pistonIn();
 	    		break;
 	    	case FLOOR_2:
+	    		System.out.println("Trigger is UP and case is FLOOR_2");
 	    		pistonIn();
 	    		currentState = elevState.BETWEEN_2_3; // Leaving floor 2
 	    		break;
 	    	case BETWEEN_2_3:
+	    		System.out.println("Trigger is UP and case is BETWEEN_2_3");
 	    		pistonIn();
 	    		break;
 	    	case FLOOR_3:
+	    		System.out.println("Trigger is UP and case is FLOOR_3");
 	    		pistonStop(); // Stops because it means you are at the top of the elevator
 	    		break;
 	    	default:
@@ -256,32 +265,40 @@ public class Elevator extends Subsystem {
 	    case DOWN:
 	    	switch(currentState) {
 	    	case FLOOR_3:
+	    		System.out.println("Trigger is DOWN and case is FLOOR_3");
 	    		pistonOut();
 	    		currentState = elevState.BETWEEN_2_3; // Leaving floor 3
 	    		break;
 	    	case BETWEEN_2_3:
+	    		System.out.println("Trigger is DOWN and case is BETWEEN_2_3");
 	    		pistonOut();
 	    		break;
 	    	case FLOOR_2:
+	    		System.out.println("Trigger is DOWN and case is FLOOR_2");
 	    		pistonOut();
 	    		currentState = elevState.BETWEEN_1_2; // Leaving floor 2
 	    		break;
 	    	case BETWEEN_1_2:
+	    		System.out.println("Trigger is DOWN and case is BETWEEN_1_2");
 	    		pistonOut();
 	    		break;
 	    	case FLOOR_1:
+	    		System.out.println("Trigger is DOWN and case is FLOOR_1");
 	    		pistonOut();
 	    		currentState = elevState.BETWEEN_0_1; // Leaving floor 1
 	    		break;
 	    	case BETWEEN_0_1:
+	    		System.out.println("Trigger is DOWN and case is BETWEEN_0_1");
 	    		pistonOut();
 	    		break;
 	    	case FLOOR_0:
+	    		System.out.println("Trigger is DOWN and case is FLOOR_0");
 	    		pistonStop(); // Stops because this is the bottom
 	    		break;
 	    	default:
 	    	}
 	    case AT_0:
+	    	System.out.println("Trigger is AT_0");
 	    	currentState = elevState.FLOOR_0;
 	    	if(goToState == elevState.FLOOR_0){
 	    		pistonStop();
@@ -295,6 +312,7 @@ public class Elevator extends Subsystem {
 	    	}
 	    	break;
 	    case AT_1:
+	    	System.out.println("Trigger is AT_1");
 	    	currentState = elevState.FLOOR_1;
 	    	if(goToState == currentState){
 	    		pistonStop();
@@ -309,6 +327,7 @@ public class Elevator extends Subsystem {
 	    	}
 	    	break;
 	    case AT_2:
+	    	System.out.println("Trigger is AT_2");
 	    	currentState = elevState.FLOOR_2;
 	    	if(goToState == currentState){
 	    		pistonStop();
@@ -323,6 +342,7 @@ public class Elevator extends Subsystem {
 	    	}
 	    	break;
 	    case AT_3:
+	    	System.out.println("Trigger is AT_3");
 	    	currentState = elevState.FLOOR_3;
 	    	if(goToState == currentState){
 	    		pistonStop();
