@@ -47,7 +47,7 @@ public class  Collect extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.collectorWheels.wheelsOff();
-    	Robot.collectorWrists.open();
+    	//Robot.collectorWrists.open();
     	Robot.elevator.rollersOff();
     }
 
