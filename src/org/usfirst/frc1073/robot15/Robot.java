@@ -85,6 +85,7 @@ public class Robot extends IterativeRobot {
        // chooser.addDefault("Drive Forward", new AutonomousCommandGroup());
        // chooser.addObject("GrabAndGo", new OneToteAutonomousGroup());
         
+       server = CameraServer.getInstance();
        server.setQuality(50);
        server.startAutomaticCapture("cam0");
     }
