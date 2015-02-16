@@ -31,9 +31,3 @@ classpath
 Desktop.ini
 $RECYCLE.BIN/
 .localized
-
-
-
-*.xml
-
-sysProps.xml
