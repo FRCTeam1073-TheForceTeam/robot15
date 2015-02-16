@@ -205,7 +205,7 @@ public class Elevator extends Subsystem {
     	// These check which direction to go in
     	if(goToState == currentState) currentTrigger = trigState.NOTHING; // If the user is already there
     	else if(goToState.ordinal() > currentState.ordinal()) currentTrigger = trigState.UP;
-    	else if(goToState.ordinal() <currentTrigger.ordinal()) currentTrigger = trigState.DOWN;
+    	else if(goToState.ordinal() < currentState.ordinal()) currentTrigger = trigState.DOWN;
     	
     	// Checks if the piston and if any return false updates the location of elevator
     	if(!magFloor0) currentTrigger = trigState.AT_0;
@@ -288,7 +288,7 @@ public class Elevator extends Subsystem {
 	    	break;
 	    case AT_1:
 	    	currentState = elevState.FLOOR_1;
-	    	if(goToState == elevState.FLOOR_1){
+	    	if(goToState == currentState){
 	    		pistonStop();
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
@@ -302,7 +302,7 @@ public class Elevator extends Subsystem {
 	    	break;
 	    case AT_2:
 	    	currentState = elevState.FLOOR_2;
-	    	if(goToState == elevState.FLOOR_2){
+	    	if(goToState == currentState){
 	    		pistonStop();
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
@@ -316,7 +316,7 @@ public class Elevator extends Subsystem {
 	    	break;
 	    case AT_3:
 	    	currentState = elevState.FLOOR_3;
-	    	if(goToState == elevState.FLOOR_3){
+	    	if(goToState == currentState){
 	    		pistonStop();
 	    	}
 	    	else if(goToState.ordinal() > currentState.ordinal()){
