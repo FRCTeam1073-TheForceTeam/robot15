@@ -24,6 +24,8 @@ dist\
 .classpath
 *.classpath
 classpath
+*.xml
+sysProps.xml
 
 #OS related
 .DS_STORE
