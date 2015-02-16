@@ -92,7 +92,7 @@ public class OI
         clawToggleButton.whenPressed(new ClawToggle());
         collectButton = new JoystickButton(operator, 1);
         collectButton.whileHeld(new Collect());
-        ratchetToggleButton = new JoystickButton(operator, 1);
+        ratchetToggleButton = new JoystickButton(operator, 12);
         ratchetToggleButton.whenPressed(new ToggleHolders());
         driver = new Joystick(0);
         
