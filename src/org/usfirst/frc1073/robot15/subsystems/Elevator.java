@@ -349,28 +349,8 @@ public class Elevator extends Subsystem {
     // Method to print the elevator position
     // Mainly for testing on the fly
     public void elevatorDashboard(){
-    	
-    	String position = "";
-    	//String[] posArray = {"On Floor 0", "On Floor 1", 
-    	if(currentState == elevState.FLOOR_0) position = "On Floor 0";
-    	if(currentState == elevState.FLOOR_1) position = "On Floor 1";
-    	if(currentState == elevState.FLOOR_2) position = "On Floor 2";
-    	if(currentState == elevState.FLOOR_3) position = "On Floor 3";
-    	if(currentState == elevState.BETWEEN_0_1) position = "Between 0 and 1";
-    	if(currentState == elevState.BETWEEN_1_2) position = "Between 1 and 2";
-    	if(currentState == elevState.BETWEEN_2_3) position = "Between 2 and 3";
-    	
-    	String triggerState = "";
-    	if(currentTrigger == trigState.AT_0) triggerState = "At 0";
-    	if(currentTrigger == trigState.AT_1) triggerState = "At 1";
-    	if(currentTrigger == trigState.AT_2) triggerState = "At 2";
-    	if(currentTrigger == trigState.AT_3) triggerState = "At 3";
-    	if(currentTrigger == trigState.DOWN) triggerState = "Moving Down";
-    	if(currentTrigger == trigState.UP) triggerState = "Moving Up";
-    	if(currentTrigger == trigState.NOTHING) triggerState = "Doing Nothing";
-    	
-    	SmartDashboard.putString("Elevator Current Trigger State: ", triggerState);
-    	SmartDashboard.putString("Elevator Current State: ", position);
+    	SmartDashboard.putString("Elevator Current Trigger State: ", currentTrigger.toString());
+    	SmartDashboard.putString("Elevator Current State: ", currentState.toString());
     }
     
     // Method for puting the information on the dashboard while testing
