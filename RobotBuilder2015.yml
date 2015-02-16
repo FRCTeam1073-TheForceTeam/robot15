@@ -293,12 +293,6 @@ Children:
         name: Default Command, type: Command, validators: null, value: None}
     Base: Subsystem
     Name: CollectorWrists
-  - Children: []
-    Properties:
-      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: SendCameraFeedToDashboard}
-    Base: Subsystem
-    Name: USBCamera
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -664,14 +658,6 @@ Children:
   Base: OI
   Name: Operator Interface
 - Children:
-  - Children: []
-    Properties:
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: USBCamera}
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
-    Base: Command
-    Name: SendCameraFeedToDashboard
   - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
