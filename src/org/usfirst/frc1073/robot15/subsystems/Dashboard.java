@@ -76,14 +76,13 @@ public class Dashboard extends Subsystem {
 	{
 		SmartDashboard.putNumber("Driving Mode", CubicRel(Robot.driveTrain.isCubicDrive(), Robot.driveTrain.isFieldRelative()));
 		SmartDashboard.putNumber("Tote Count", Robot.elevator.getTotesHeld());
-		//SmartDashboard.putNumber("Distance Widget", Robot.rangeFinder.getDistance()); 
+		SmartDashboard.putNumber("Distance Widget", Robot.rangeFinder.getDistance()); 
 		SmartDashboard.putNumber("ToteCollectorInfo", collectPunch(Robot.collectorWheels.isCollecting(), Robot.collectorWheels.isPurging(), Robot.binCollector.isCollecting(), Robot.binCollector.islowering()));
 		SmartDashboard.putNumber("Battery", DriverStation.getInstance().getBatteryVoltage());
 		SmartDashboard.putBoolean("Claw", Robot.binCollector.getState());
 		SmartDashboard.putBoolean("Wrist", Robot.collectorWrists.getState());
 		SmartDashboard.putNumber("Elevator Level", Robot.elevator.getPistonState());
 		//SmartDashboard.putNumber("Current", )
-		//SmartDashboard.putNumber("PSI Gauge", )
 		
 	}
         // Set the default command for a subsystem here.
