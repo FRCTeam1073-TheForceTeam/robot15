@@ -262,6 +262,7 @@ public class Elevator extends Subsystem {
 	    		break;
 	    	default:
 	    	}
+	    	break;
 	    case DOWN:
 	    	switch(currentState) {
 	    	case FLOOR_3:
@@ -297,6 +298,7 @@ public class Elevator extends Subsystem {
 	    		break;
 	    	default:
 	    	}
+	    	break;
 	    case AT_0:
 	    	System.out.println("Trigger is AT_0");
 	    	currentState = elevState.FLOOR_0;
