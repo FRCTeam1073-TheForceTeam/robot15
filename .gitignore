@@ -33,3 +33,7 @@ $RECYCLE.BIN/
 .localized
 
 
+
+*.xml
+
+sysProps.xml

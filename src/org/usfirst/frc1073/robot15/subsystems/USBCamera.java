@@ -41,6 +41,7 @@ public class USBCamera extends Subsystem {
     }
     public void sendFeedToDashboard(){
     	cameraUSB.startAutomaticCapture("cam0");
+    	//cameraUSB.startAutomaticCapture("Simple Camera Viewer");
     }
 }
 
