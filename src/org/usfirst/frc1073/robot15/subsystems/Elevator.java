@@ -16,7 +16,6 @@ import org.usfirst.frc1073.robot15.RobotMap;
 import org.usfirst.frc1073.robot15.commands.*;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -112,6 +111,11 @@ public class Elevator extends Subsystem {
 	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public boolean getHolders()
+    {
+    	return elevatorStackHolderSolenoid.get();
     }
     
     // Method to set the totes amount
