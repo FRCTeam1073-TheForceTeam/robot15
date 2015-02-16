@@ -100,6 +100,8 @@ public class Elevator extends Subsystem {
     private boolean magFloor2;
     private boolean magFloor3;
     
+    private boolean holdersState;
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     
@@ -115,7 +117,7 @@ public class Elevator extends Subsystem {
     
     public boolean getHolders()
     {
-    	return elevatorStackHolderSolenoid.get();
+    	return holdersState;
     }
     
     // Method to set the totes amount
@@ -176,11 +178,13 @@ public class Elevator extends Subsystem {
     
     // Method to extend the holders that will hold the totes up
     public void stackHold(){
+    	holdersState = false;
     	elevatorStackHolderSolenoid.set(OPEN);
     }
     
     // Method to retract the holders that will hold the stack
     public void stackDrop(){
+    	holdersState = true;
     	elevatorStackHolderSolenoid.set(CLOSE);
     }
     
