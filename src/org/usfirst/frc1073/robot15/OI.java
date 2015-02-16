@@ -107,6 +107,8 @@ public class OI
 
 	    
         // SmartDashboard Buttons
+        SmartDashboard.putData("SendCameraFeedToDashboard", new SendCameraFeedToDashboard());
+
         SmartDashboard.putData("TestHolders", new TestHolders());
 
         SmartDashboard.putData("TestHoldersRelease", new TestHoldersRelease());
