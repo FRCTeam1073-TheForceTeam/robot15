@@ -12,14 +12,16 @@
 package org.usfirst.frc1073.robot15.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc1073.robot15.Robot;
+import org.usfirst.frc1073.robot15.subsystems.Elevator;
 
 /**
  *
  */
-public class  TestPurgeRollers extends Command {
+public class  ToFloor1 extends Command {
 
-    public TestPurgeRollers() {
+    public ToFloor1() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -31,11 +33,12 @@ public class  TestPurgeRollers extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.rollersPurge();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.elevator.move(Elevator.elevState.FLOOR_1);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -45,7 +48,7 @@ public class  TestPurgeRollers extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator.rollersOff();
+    	Robot.elevator.pistonStop();
     }
 
     // Called when another command which requires one or more of the same

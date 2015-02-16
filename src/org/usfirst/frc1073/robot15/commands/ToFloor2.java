@@ -12,14 +12,16 @@
 package org.usfirst.frc1073.robot15.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc1073.robot15.Robot;
+import org.usfirst.frc1073.robot15.subsystems.Elevator;
 
 /**
  *
  */
-public class  TestHoldersRelease extends Command {
+public class  ToFloor2 extends Command {
 
-    public TestHoldersRelease() {
+    public ToFloor2() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -31,20 +33,22 @@ public class  TestHoldersRelease extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.elevator.stackHold();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.elevator.move(Elevator.elevState.FLOOR_2);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.elevator.pistonStop();
     }
 
     // Called when another command which requires one or more of the same

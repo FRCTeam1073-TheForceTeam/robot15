@@ -15,14 +15,13 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc1073.robot15.Robot;
 import org.usfirst.frc1073.robot15.subsystems.Elevator;
-import org.usfirst.frc1073.robot15.subsystems.Elevator.elevState;
 
 /**
  *
  */
-public class  ToToteFloor extends Command {
+public class  ToFloor3 extends Command {
 
-    public ToToteFloor() {
+    public ToFloor3() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -34,23 +33,12 @@ public class  ToToteFloor extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.binCollector.open();
-    	Robot.binCollector.binLift();
-    	Robot.collectorWrists.open();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.elevator.move(Elevator.elevState.FLOOR_3);
 
-    	if (Robot.elevator.elevatorState() == 4) {
-    		Robot.elevator.pistonStop();
-    		Robot.collectorWheels.wheelsPurge();
-    		Robot.elevator.rollersPurge();
-    	}
-    	else
-    	{
-        	Robot.elevator.move(elevState.FLOOR_2);
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -60,9 +48,7 @@ public class  ToToteFloor extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.collectorWheels.wheelsOff();
-    	Robot.elevator.rollersOff();
-    	Robot.binCollector.close();
+    	Robot.elevator.pistonStop();
     }
 
     // Called when another command which requires one or more of the same

@@ -19,9 +19,9 @@ import org.usfirst.frc1073.robot15.subsystems.Elevator;
 /**
  *
  */
-public class  TestToFloor1 extends Command {
+public class  ToFloor0 extends Command {
 
-    public TestToFloor1() {
+    public ToFloor0() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -37,7 +37,7 @@ public class  TestToFloor1 extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.move(Elevator.elevState.FLOOR_1);
+    	Robot.elevator.move(Elevator.elevState.FLOOR_0);
 
     }
 
