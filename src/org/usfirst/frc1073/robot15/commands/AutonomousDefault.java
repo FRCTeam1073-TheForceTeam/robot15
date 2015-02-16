@@ -28,12 +28,12 @@ public class AutonomousDefault extends CommandGroup {
     	AutonomousDrive drive = new AutonomousDrive();
     	AutonomousLiftElevator lift = new AutonomousLiftElevator();
     	
-    	Robot.chooser.addDefault("Autonomous Drive", drive);
+    	//Robot.chooser.addDefault("Autonomous Drive", drive);
     	
-    	if(Robot.chooser.equals(drive)){
+    	//if(Robot.chooser.equals(drive)){
     		addSequential(lift);
     		addSequential(drive);
-    	}
+    	//}
     	
     	
         // To run multiple commands at the same time,

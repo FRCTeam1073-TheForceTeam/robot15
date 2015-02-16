@@ -19,8 +19,8 @@ import org.usfirst.frc1073.robot15.Robot;
  */
 public class  AutonomousDrive extends Command {
 
-	private final float SPEED = 0.4f; // May need to be changed
-	private final double TIMEOUT = 4.0; // May need to be changed
+	private final float SPEED = 0.65f; // May need to be changed
+	private final double TIMEOUT = 5; // May need to be changed
 	
     public AutonomousDrive() {
         // Use requires() here to declare subsystem dependencies
@@ -40,12 +40,12 @@ public class  AutonomousDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.move(0.0f, SPEED, 0.0f);
+    	Robot.driveTrain.move(0.0f, -SPEED, 0.0f);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

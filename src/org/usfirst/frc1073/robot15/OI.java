@@ -110,18 +110,6 @@ public class OI
 
 	    
         // SmartDashboard Buttons
-        SmartDashboard.putData("PurgeRollers", new PurgeRollers());
-
-        SmartDashboard.putData("FieldRel", new FieldRel());
-
-        SmartDashboard.putData("WinchUp", new WinchUp());
-
-        SmartDashboard.putData("WinchDown", new WinchDown());
-
-        SmartDashboard.putData("ElevatorUpManual", new ElevatorUpManual());
-
-        SmartDashboard.putData("ElevatorDownManual", new ElevatorDownManual());
-
         SmartDashboard.putData("ArmsToggle", new ArmsToggle());
 
 
