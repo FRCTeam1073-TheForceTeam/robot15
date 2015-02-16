@@ -209,7 +209,7 @@ public class Elevator extends Subsystem {
     public void move(elevState goToState){
     	System.out.println("The goToState: " + goToState.toString());
     	
-    	if(goToState != currentState && !Robot.collectorWrists.getState()) Robot.collectorWrists.open(); // Moves the tote collector out of the way of elevator
+    	//if(goToState != currentState && !Robot.collectorWrists.getState()) Robot.collectorWrists.open(); // Moves the tote collector out of the way of elevator
     	
     	// These check which direction to go in
     	if(goToState == currentState) currentTrigger = trigState.NOTHING; // If the user is already there

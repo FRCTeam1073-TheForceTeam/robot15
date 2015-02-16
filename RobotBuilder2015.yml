@@ -314,13 +314,13 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '10'
+          value: '5'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
           type: Command
           validators: &id012 [TypeDropdownSelected]
-          value: TestToFloor3
+          value: WinchUp
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: &id013 [whileHeld, whenPressed, whenReleased]
           default: whileHeld
@@ -328,7 +328,7 @@ Children:
           validators: null
           value: whileHeld
       Base: Joystick Button
-      Name: TestFloor3
+      Name: WinchUpButton
     - Children: []
       Properties:
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
@@ -338,13 +338,13 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '9'
+          value: '3'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
           type: Command
           validators: *id012
-          value: TestToFloor2
+          value: WinchDown
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id013
           default: whileHeld
@@ -352,7 +352,7 @@ Children:
           validators: null
           value: whileHeld
       Base: Joystick Button
-      Name: TestFloor2
+      Name: WinchDownButton
     - Children: []
       Properties:
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
@@ -362,45 +362,21 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '8'
+          value: '12'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
           type: Command
           validators: *id012
-          value: TestToFloor1
+          value: ClawToggle
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id013
           default: whileHeld
           name: When to Run
           validators: null
-          value: whileHeld
+          value: whenPressed
       Base: Joystick Button
-      Name: TestFloor1
-    - Children: []
-      Properties:
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: Driver}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id011
-          default: '1'
-          name: Button
-          validators: null
-          value: '7'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id012
-          value: TestToFloor0
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id013
-          default: whileHeld
-          name: When to Run
-          validators: null
-          value: whileHeld
-      Base: Joystick Button
-      Name: TestFloor0
+      Name: ClawToggleButton
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: &id014 ['0', '1', '2', '3', '4', '5']
@@ -468,30 +444,6 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '8'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id012
-          value: ClawToggle
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id013
-          default: whileHeld
-          name: When to Run
-          validators: null
-          value: whenPressed
-      Base: Joystick Button
-      Name: ClawToggleButton
-    - Children: []
-      Properties:
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: Operator}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id011
-          default: '1'
-          name: Button
-          validators: null
           value: '11'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
@@ -522,54 +474,6 @@ Children:
           name: Command
           type: Command
           validators: *id012
-          value: WinchUp
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id013
-          default: whileHeld
-          name: When to Run
-          validators: null
-          value: whileHeld
-      Base: Joystick Button
-      Name: WinchUpButton
-    - Children: []
-      Properties:
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: Operator}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id011
-          default: '1'
-          name: Button
-          validators: null
-          value: '4'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id012
-          value: WinchDown
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id013
-          default: whileHeld
-          name: When to Run
-          validators: null
-          value: whileHeld
-      Base: Joystick Button
-      Name: WinchDownButton
-    - Children: []
-      Properties:
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: Operator}
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id011
-          default: '1'
-          name: Button
-          validators: null
-          value: '5'
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id012
           value: ElevatorUpManual
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id013
@@ -588,7 +492,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '3'
+          value: '4'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -627,6 +531,126 @@ Children:
           value: whileHeld
       Base: Joystick Button
       Name: PurgeStackButton
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Operator}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id011
+          default: '1'
+          name: Button
+          validators: null
+          value: '5'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id012
+          value: RollersCollect
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id013
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: RollersCollectButton
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Operator}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id011
+          default: '1'
+          name: Button
+          validators: null
+          value: '10'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id012
+          value: TestToFloor0
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id013
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: TestFloor0
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Operator}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id011
+          default: '1'
+          name: Button
+          validators: null
+          value: '9'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id012
+          value: TestToFloor1
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id013
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: TestFloor1
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Operator}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id011
+          default: '1'
+          name: Button
+          validators: null
+          value: '8'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id012
+          value: TestToFloor2
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id013
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: TestFloor2
+    - Children: []
+      Properties:
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: Operator}
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id011
+          default: '1'
+          name: Button
+          validators: null
+          value: '7'
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id012
+          value: TestToFloor3
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id013
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whileHeld
+      Base: Joystick Button
+      Name: TestFloor3
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id014
@@ -1024,11 +1048,19 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: ToggleHolders
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: RollersCollect
   Properties: {}
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Derek\workspace',
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\team1073\workspace',
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ../}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
