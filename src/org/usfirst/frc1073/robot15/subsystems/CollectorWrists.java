@@ -13,9 +13,10 @@ package org.usfirst.frc1073.robot15.subsystems;
 
 import org.usfirst.frc1073.robot15.RobotMap;
 import org.usfirst.frc1073.robot15.commands.*;
-import edu.wpi.first.wpilibj.*;
 
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -48,18 +49,23 @@ public class CollectorWrists extends Subsystem {
     public void close(){
     	isOpen = false;
     	toteCollectorSolenoid.set(CLOSE);
-    	// SmartDashboard.putBoolean("Tote Collector Collecting", isClosed); for testing
     }
     
     // Method to close the collector together
     public void open(){
     	isOpen = true;
     	toteCollectorSolenoid.set(OPEN);
-    	// SmartDashboard.putBoolean("Tote Collector Collecting", isClosed); for testing
     }
     
+    // Returns the state of the collector wrists
     public boolean getState(){
     	return isOpen;
     }
+    
+    // Method that can be called while testing
+    public void testInformation(){
+    	SmartDashboard.putBoolean("Tote Collector Collecting", isOpen);
+    }
+    
 }
 

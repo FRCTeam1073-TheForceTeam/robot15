@@ -124,6 +124,8 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         elevator.updateMag();
         
+        // This method will provide all of the information that will be needed while testing, simply uncomment it.
+        // dashboard.allTestingInformation();
     }
 
     /**

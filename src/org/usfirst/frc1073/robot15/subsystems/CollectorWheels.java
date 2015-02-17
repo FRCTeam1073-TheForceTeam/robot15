@@ -61,7 +61,7 @@ public class CollectorWheels extends Subsystem {
     	toteCollectorRightTalon.set(0);
     }
     
-    //returns true if it is collecting
+    // Returns true if it is collecting
     public boolean isCollecting(){
     	if(toteCollectorLeftTalon.getSetpoint() > 0){
     		return true;
@@ -69,7 +69,7 @@ public class CollectorWheels extends Subsystem {
     	return false;
     }
     
-    //returns true if it is purging
+    // Returns true if it is purging
     public boolean isPurging(){
     	if(toteCollectorLeftTalon.getSetpoint() < 0){
     		return true;
