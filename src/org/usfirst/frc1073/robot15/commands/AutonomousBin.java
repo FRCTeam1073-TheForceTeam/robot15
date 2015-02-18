@@ -10,27 +10,23 @@
 
 
 package org.usfirst.frc1073.robot15.commands;
-import org.usfirst.frc1073.robot15.Robot;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutonomousDefault extends CommandGroup {
+public class AutonomousBin extends CommandGroup {
     
-    public  AutonomousDefault() {
+    public  AutonomousBin() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
     	
-    	AutonomousDrive drive = new AutonomousDrive();
-    	AutonomousLiftElevator lift = new AutonomousLiftElevator();
-    	
-    		addSequential(lift);
-    		addSequential(drive);
-    	
+    	addSequential(new AutonomousClamp(), 0.8);
+    	addSequential(new AutonomousBinLift());
+    	addSequential(new AutonomousLiftElevator());
+    	addSequential(new AutonomousDriveBin());
     	
         // To run multiple commands at the same time,
         // use addParallel()
