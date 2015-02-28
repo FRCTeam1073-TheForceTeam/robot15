@@ -1,0 +1,27 @@
+Tote and container auto
+
+---Spaces between groups indicate sequential or parallel commands.
+
+start wrist motors - DoubleAutoCollect
+close collector wrists - DoubleAutoCollect
+intake elevator belt - DoubleAutoCollect
+stop wrists and elevator when tote is in - DoubleAutoCollect
+
+Open wrists so tote can be raised - DoubleAutoRaiseToteToFirstlevel
+Drive elevator rollers to prevent tote ejection - DoubleAutoRaiseToteToFirstLevel
+Raise tote to first level (so robot can drive) - DoubleAutoRaiseToteToFirstLevel
+
+
+drive forward until the bin is in the collector - DoubleAutoDriveToBin
+
+Close the bin collector arms - DoubleAutoCloseBinArms
+
+begin elevating the bin collector - DoubleAutoWinchUp
+turn 90 degrees (ish) - DoubleAutoTurnToAutoZone
+
+drive forward into auto zone - DoubleAutoDriveToAutoZone
+
+Lower the tote to the first level - DoubleAutoToteToGroundLevel
+
+eject auto tote with elevator rollers - DoubleAutoRollersEject
+

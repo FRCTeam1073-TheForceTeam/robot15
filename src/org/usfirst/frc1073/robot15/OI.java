@@ -110,6 +110,8 @@ public class OI
 
 	    
         // SmartDashboard Buttons
+        SmartDashboard.putData("DoubleAuto", new DoubleAuto());
+
         SmartDashboard.putData("ArmsToggle", new ArmsToggle());
 
 
