@@ -39,7 +39,7 @@ public class BinCollector extends Subsystem
     // here. Call these from Commands.
     
     public BinCollector(){
-    	binCollectorTalon.enableLimitSwitch(true, false); // Enables the limit switch while going down
+    	binCollectorTalon.enableLimitSwitch(true, true); // Enables the limit switch while going down
     }
 
     public void initDefaultCommand() {

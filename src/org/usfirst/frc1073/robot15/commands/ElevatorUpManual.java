@@ -31,6 +31,7 @@ public class  ElevatorUpManual extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(!Robot.collectorWrists.getState()) Robot.collectorWrists.open();
     	Robot.elevator.pistonIn();
     }
 

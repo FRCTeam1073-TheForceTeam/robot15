@@ -207,6 +207,9 @@ public class Elevator extends Subsystem {
     }
     
     public void move(elevState goToState){
+    	
+    	if(!Robot.collectorWrists.getState()) Robot.collectorWrists.open();
+    	
     	System.out.println("The goToState: " + goToState.toString());
     	
     	//if(goToState != currentState && !Robot.collectorWrists.getState()) Robot.collectorWrists.open(); // Moves the tote collector out of the way of elevator

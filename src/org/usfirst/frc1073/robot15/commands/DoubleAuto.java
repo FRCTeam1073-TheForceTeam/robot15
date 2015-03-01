@@ -21,13 +21,14 @@ public class DoubleAuto extends CommandGroup {
     	
     	addSequential(new DoubleAutoCollect());
     	addSequential(new DoubleAutoRaiseToteToFirstLevel());
+    	/*
     	addSequential(new DoubleAutoDriveToBin());
     	addSequential(new DoubleAutoCloseBinArms());
     	addParallel(new DoubleAutoWinchUp());
     	addSequential(new DoubleAutoTurnToAutoZone());
     	addSequential(new DoubleAutoDriveToAutoZone());
     	addSequential(new DoubleAutoToteToGroundLevel());
-    	addSequential(new DoubleAutoRollersEject());
+    	addSequential(new DoubleAutoRollersEject()); */
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

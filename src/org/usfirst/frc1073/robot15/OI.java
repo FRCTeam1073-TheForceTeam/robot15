@@ -103,9 +103,9 @@ public class OI
         
         clawToggleButton = new JoystickButton(driver, 12);
         clawToggleButton.whenPressed(new ClawToggle());
-        winchDownButton = new JoystickButton(driver, 3);
+        winchDownButton = new JoystickButton(driver, 9);
         winchDownButton.whileHeld(new WinchDown());
-        winchUpButton = new JoystickButton(driver, 5);
+        winchUpButton = new JoystickButton(driver, 10);
         winchUpButton.whileHeld(new WinchUp());
 
 	    

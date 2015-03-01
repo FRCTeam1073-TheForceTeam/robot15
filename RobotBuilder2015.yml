@@ -308,7 +308,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '5'
+          value: '10'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -332,7 +332,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '3'
+          value: '9'
         Command: !!robotbuilder.data.properties.TypeSelectionProperty
           default: None
           name: Command
@@ -661,6 +661,12 @@ Children:
   - Children: []
     Properties:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command Group
+    Name: TrippleAuto
+  - Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command Group
     Name: DoubleAuto
@@ -960,7 +966,7 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Derek\workspace',
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: /Users/nnapior/workspace,
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ../}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
