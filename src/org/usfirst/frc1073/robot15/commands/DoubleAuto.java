@@ -11,6 +11,7 @@
 
 package org.usfirst.frc1073.robot15.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -19,16 +20,17 @@ public class DoubleAuto extends CommandGroup {
     
     public  DoubleAuto() {
     	
+    	addSequential(new WinchDown(), 3.2);
     	addSequential(new DoubleAutoCollect());
-    	addSequential(new DoubleAutoRaiseToteToFirstLevel());
-    	/*
     	addSequential(new DoubleAutoDriveToBin());
     	addSequential(new DoubleAutoCloseBinArms());
-    	addParallel(new DoubleAutoWinchUp());
+    	addSequential(new WaitCommand(0.5));
+    	addSequential(new DoubleAutoWinchUp());
+    	
+    	addParallel(new DoubleAutoRaiseToteToFirstLevel());
     	addSequential(new DoubleAutoTurnToAutoZone());
+    	addSequential(new WaitCommand(0.5));
     	addSequential(new DoubleAutoDriveToAutoZone());
-    	addSequential(new DoubleAutoToteToGroundLevel());
-    	addSequential(new DoubleAutoRollersEject()); */
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

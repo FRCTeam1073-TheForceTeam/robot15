@@ -31,6 +31,7 @@ public class  PurgeRollers extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(!Robot.binCollector.getState()) Robot.binCollector.open();
     	Robot.elevator.rollersPurge();
     }
 

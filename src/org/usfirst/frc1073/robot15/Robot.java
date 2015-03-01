@@ -121,7 +121,6 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	
     	toteCollectTime = prefs.getDouble("toteTimeout", 1.0);
-    	System.out.println(toteCollectTime);
     	driveToAutoTime = prefs.getDouble("timeToAutozone", 4.0);
     	driveToAutoSpeed = prefs.getFloat("driveSpeedToScore", -0.8f);
     	driveToBinTime = prefs.getDouble("timeToBin", 1.0);
@@ -132,6 +131,7 @@ public class Robot extends IterativeRobot {
     	turnToAutoTime = prefs.getDouble("timeToTurnToAutoZone", 1.0);
     	turnToAutoSpeed = prefs.getFloat("speedToTurnToAutoZone", 0.5f);
     	binLiftTime = prefs.getDouble("timeToLiftBin", 1.0);
+    	prefs.save();
     	
         // schedule the autonomous command (example)
     	autonomousCommand = (Command) chooser.getSelected();

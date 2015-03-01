@@ -90,13 +90,13 @@ public class BinCollector extends Subsystem
     // Method to open the bin collector claw
     public void open() {
     	clawState = true;
-    	binCollectorSolenoid.set(true);
+    	binCollectorSolenoid.set(false);
     }
     
     // Method to close the bin collector claw
     public void close() {
     	clawState = false;
-    	binCollectorSolenoid.set(false);
+    	binCollectorSolenoid.set(true);
     }
     
 	

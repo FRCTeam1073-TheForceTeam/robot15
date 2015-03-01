@@ -33,7 +33,7 @@ public class  DoubleAutoRaiseToteToFirstLevel extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.collectorWrists.open();
+    	//Robot.collectorWrists.open();
     	Robot.elevator.rollersCollect();
     }
 
