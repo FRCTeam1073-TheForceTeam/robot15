@@ -11,7 +11,7 @@
 
 package org.usfirst.frc1073.robot15;
 
-import edu.wpi.first.wpilibj.CameraServer;
+//import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot {
     public static float turnToAutoSpeed;
     public static double binLiftTime;
 
-    CameraServer server;
+  //  CameraServer server;
     Command autonomousCommand;
     
     /**
@@ -101,9 +101,11 @@ public class Robot extends IterativeRobot {
        prefs = Preferences.getInstance();
         
        // Camera code
+       /*
        server = CameraServer.getInstance();
        server.setQuality(50);
        server.startAutomaticCapture("cam0");
+    	*/
     }
 
     /**
