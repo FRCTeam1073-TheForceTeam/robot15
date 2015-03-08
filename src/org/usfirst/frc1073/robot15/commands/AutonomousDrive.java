@@ -20,7 +20,7 @@ import org.usfirst.frc1073.robot15.Robot;
 public class  AutonomousDrive extends Command {
 
 	private final float SPEED = 0.65f; // May need to be changed
-	private final double TIMEOUT = 5; // May need to be changed
+	private final double TIMEOUT = 4.5; // May need to be changed
 	
     public AutonomousDrive() {
         // Use requires() here to declare subsystem dependencies

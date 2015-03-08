@@ -16,19 +16,12 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  */
-public class DoubleAuto extends CommandGroup {
+public class SingleTote extends CommandGroup {
     
-    public  DoubleAuto() {
+    public  SingleTote() {
     	
-    	addSequential(new WinchDown(), 3.2);
     	addSequential(new DoubleAutoCollect());
-    	addSequential(new DoubleAutoDriveToBin());
-    	addSequential(new DoubleAutoCloseBinArms());
-    	addSequential(new WaitCommand(0.5));
-    	addSequential(new DoubleAutoWinchUp());
-    	
     	addParallel(new DoubleAutoRaiseToteToFirstLevel());
-    	addSequential(new ArmsToggle());
     	addSequential(new DoubleAutoTurnToAutoZone());
     	addSequential(new WaitCommand(0.5));
     	addSequential(new DoubleAutoDriveToAutoZone());

@@ -26,9 +26,7 @@ public class AutonomousDefault extends CommandGroup {
         // these will run in order.
     	
     	AutonomousDrive drive = new AutonomousDrive();
-    	AutonomousLiftElevator lift = new AutonomousLiftElevator();
-    	
-    		addSequential(lift);
+ 
     		addSequential(drive);
     	
     	

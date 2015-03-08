@@ -199,6 +199,11 @@ public class Elevator extends Subsystem {
     	magFloor1 = elevatorMagLow.get();
     	magFloor2 = elevatorMagMed.get();
     	magFloor3 = elevatorMagHigh.get();
+    	
+    	System.out.println("Mag floor 0:" + magFloor0);
+    	System.out.println("Mag floor 1:" + magFloor1);
+    	System.out.println("Mag floor 2:" + magFloor2);
+    	System.out.println("Mag floor 3:" + magFloor3);
     }
     
     // Returns the elevator state in int 
@@ -211,9 +216,7 @@ public class Elevator extends Subsystem {
     	if(!Robot.collectorWrists.getState()) Robot.collectorWrists.open();
     	
     	System.out.println("The goToState: " + goToState.toString());
-    	
-    	//if(goToState != currentState && !Robot.collectorWrists.getState()) Robot.collectorWrists.open(); // Moves the tote collector out of the way of elevator
-    	
+    	    	
     	// These check which direction to go in
     	if(goToState == currentState) currentTrigger = trigState.NOTHING; // If the user is already there
     	else if(goToState.ordinal() > currentState.ordinal()) currentTrigger = trigState.UP;

@@ -95,7 +95,7 @@ public class Robot extends IterativeRobot {
        chooser.addDefault("Autonomous Default", new AutonomousDefault());
        chooser.addObject("Autonomous Bin Start", new AutonomousBin());
        chooser.addObject("Autonomous Double", new DoubleAuto());
-       chooser.addObject("Tripple Stack", new TrippleAuto());
+       chooser.addObject("Autonomous Single Tote", new SingleTote());
        SmartDashboard.putData("Autonomous choice: ", chooser);
        
        prefs = Preferences.getInstance();
@@ -146,6 +146,7 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
         elevator.updateMag();
+        dashboard.allTestingInformation();
     }
 
     public void teleopInit() {
