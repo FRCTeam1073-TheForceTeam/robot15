@@ -12,7 +12,9 @@
 package org.usfirst.frc1073.robot15.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc1073.robot15.Robot;
+import org.usfirst.frc1073.robot15.subsystems.Elevator;
 
 /**
  *
@@ -32,11 +34,11 @@ public class  ElevatorUpManual extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if(!Robot.collectorWrists.getState()) Robot.collectorWrists.open();
-    	Robot.elevator.pistonIn();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.elevator.move(Elevator.elevState.FLOOR_3);
     }
 
     // Make this return true when this Command no longer needs to run execute()
