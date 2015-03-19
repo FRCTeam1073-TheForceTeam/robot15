@@ -33,7 +33,7 @@ public class  ElevatorDownManual extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(!Robot.collectorWrists.getState()) Robot.collectorWrists.open();
+    	//if(!Robot.collectorWrists.getState()) Robot.collectorWrists.open();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -49,6 +49,8 @@ public class  ElevatorDownManual extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.elevator.pistonStop();
+    	Robot.elevator.rollersOff();
+    	Robot.collectorWrists.close();
     }
 
     // Called when another command which requires one or more of the same

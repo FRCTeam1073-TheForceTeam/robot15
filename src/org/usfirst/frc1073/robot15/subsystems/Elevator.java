@@ -43,6 +43,7 @@ public class Elevator extends Subsystem {
     private final boolean CLOSE = true;
     
     private final double ROLLER_SPEED = 0.7; // Set speed of rollers. #########MIGHT NEED TO CHANGE, NOT FINAL#############
+    private final double HOLD_ROLLER_SPEED = .35; // Speed of rollers when elevator moving so stuff doesnt fall out 
     
     private int totesHeld = 0; // The number of totes in the robot
     
@@ -144,13 +145,17 @@ public class Elevator extends Subsystem {
     public void rollersCollect(){
     	elevatorRollerTalon.set(-ROLLER_SPEED);
     }
+    public void rollersCollect(double speed)
+    {
+    	elevatorRollerTalon.set(speed);
+    }
     
     // Method ejects the totes on rolers
     public void rollersPurge(){
     	elevatorRollerTalon.set(ROLLER_SPEED);
     }
     
-    // Method to turn the rolers off
+    // Method to turn the rollers off
     public void rollersOff(){
     	elevatorRollerTalon.set(0.0);
     }
@@ -213,14 +218,25 @@ public class Elevator extends Subsystem {
     
     public void move(elevState goToState){
     	
-    	if(!Robot.collectorWrists.getState()) Robot.collectorWrists.open();
-    	
     	System.out.println("The goToState: " + goToState.toString());
     	    	
     	// These check which direction to go in
     	if(goToState == currentState) currentTrigger = trigState.NOTHING; // If the user is already there
     	else if(goToState.ordinal() > currentState.ordinal()) currentTrigger = trigState.UP;
     	else if(goToState.ordinal() < currentState.ordinal()) currentTrigger = trigState.DOWN;
+    	
+    	if(!(currentTrigger == trigState.NOTHING))
+    	{
+    		//If it's not equal to nothing, then it has to be moving
+    		
+    		rollersCollect(HOLD_ROLLER_SPEED);
+    	    Robot.collectorWrists.open();
+    	}
+    	else
+    	{
+    		rollersOff();
+    		Robot.collectorWrists.close();
+    	}
     	
     	// Checks if the piston and if any return false updates the location of elevator
     	if(!magFloor0) currentTrigger = trigState.AT_0;
