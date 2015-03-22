@@ -49,6 +49,10 @@ public class  ToFloor2 extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.elevator.pistonStop();
+    	if(Robot.elevator.getHasOpened() && (Robot.elevator.elevatorState() == 1 || Robot.elevator.elevatorState() == 0)){
+    		Robot.collectorWrists.close();
+    		Robot.elevator.setHasOpened(false);
+    	}
     }
 
     // Called when another command which requires one or more of the same

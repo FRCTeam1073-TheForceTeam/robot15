@@ -42,6 +42,8 @@ public class Elevator extends Subsystem {
     private final boolean OPEN = false; 
     private final boolean CLOSE = true;
     
+     private boolean youHaveOpenedTheWrists;
+    
     private final double ROLLER_SPEED = 0.7; // Set speed of rollers. #########MIGHT NEED TO CHANGE, NOT FINAL#############
     private final double HOLD_ROLLER_SPEED = .35; // Speed of rollers when elevator moving so stuff doesnt fall out 
     
@@ -116,8 +118,7 @@ public class Elevator extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public boolean getHolders()
-    {
+    public boolean getHolders(){
     	return holdersState;
     }
     
@@ -145,8 +146,9 @@ public class Elevator extends Subsystem {
     public void rollersCollect(){
     	elevatorRollerTalon.set(-ROLLER_SPEED);
     }
-    public void rollersCollect(double speed)
-    {
+    
+    // Rollers collect with given speed
+    public void rollersCollect(double speed){
     	elevatorRollerTalon.set(speed);
     }
     
@@ -211,6 +213,14 @@ public class Elevator extends Subsystem {
     	System.out.println("Mag floor 3:" + magFloor3);
     }
     
+    public boolean getHasOpened(){
+    	return youHaveOpenedTheWrists;
+    }
+    
+    public void setHasOpened(boolean newVal){
+    	youHaveOpenedTheWrists = newVal;
+    }
+    
     // Returns the elevator state in int 
     public int elevatorState(){
     	return currentState.ordinal();
@@ -219,24 +229,17 @@ public class Elevator extends Subsystem {
     public void move(elevState goToState){
     	
     	System.out.println("The goToState: " + goToState.toString());
+    	
+    	if(!Robot.collectorWrists.getState()){ 
+    		Robot.collectorWrists.open();
+    		youHaveOpenedTheWrists = true;
+    	}
     	    	
     	// These check which direction to go in
     	if(goToState == currentState) currentTrigger = trigState.NOTHING; // If the user is already there
     	else if(goToState.ordinal() > currentState.ordinal()) currentTrigger = trigState.UP;
     	else if(goToState.ordinal() < currentState.ordinal()) currentTrigger = trigState.DOWN;
     	
-    	if(!(currentTrigger == trigState.NOTHING))
-    	{
-    		//If it's not equal to nothing, then it has to be moving
-    		
-    		rollersCollect(HOLD_ROLLER_SPEED);
-    	    Robot.collectorWrists.open();
-    	}
-    	else
-    	{
-    		rollersOff();
-    		Robot.collectorWrists.close();
-    	}
     	
     	// Checks if the piston and if any return false updates the location of elevator
     	if(!magFloor0) currentTrigger = trigState.AT_0;

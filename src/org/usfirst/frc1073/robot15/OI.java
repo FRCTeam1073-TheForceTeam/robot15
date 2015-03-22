@@ -90,9 +90,9 @@ public class OI
         purgeStackButton = new JoystickButton(operator, 2);
         purgeStackButton.whileHeld(new PurgeRollers());
         elevatorDownButton = new JoystickButton(operator, 4);
-        elevatorDownButton.whileHeld(new ElevatorDownManual());
+        elevatorDownButton.whileHeld(new ToFloor0());
         elevatorUpButton = new JoystickButton(operator, 6);
-        elevatorUpButton.whileHeld(new ElevatorUpManual());
+        elevatorUpButton.whileHeld(new ToFloor3());
         armsToggleButton = new JoystickButton(operator, 11);
         armsToggleButton.whenPressed(new ArmsToggle());
         collectButton = new JoystickButton(operator, 1);
