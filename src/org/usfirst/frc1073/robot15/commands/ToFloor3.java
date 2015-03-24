@@ -33,6 +33,7 @@ public class  ToFloor3 extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.elevator.rollersCollect(-0.4);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -53,6 +54,8 @@ public class  ToFloor3 extends Command {
     		Robot.collectorWrists.close();
     		Robot.elevator.setHasOpened(false);
     	}
+    	
+    	Robot.elevator.rollersOff();
     }
 
     // Called when another command which requires one or more of the same
