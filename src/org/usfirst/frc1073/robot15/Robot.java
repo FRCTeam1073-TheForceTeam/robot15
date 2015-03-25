@@ -104,6 +104,7 @@ public class Robot extends IterativeRobot {
        chooser.addObject("Autonomous Bin Start", new AutonomousBin());
        chooser.addObject("Autonomous Double", new DoubleAuto());
        chooser.addObject("Autonomous Single Tote", new SingleTote());
+       chooser.addObject("Autonomous Drive From LandFill", new AutonomousDriveFromLandFill());
        SmartDashboard.putData("Autonomous choice: ", chooser);
        
        prefs = Preferences.getInstance();
