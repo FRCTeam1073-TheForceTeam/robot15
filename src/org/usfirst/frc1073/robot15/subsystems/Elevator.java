@@ -230,7 +230,7 @@ public class Elevator extends Subsystem {
     	
     	System.out.println("The goToState: " + goToState.toString());
     	
-    	if(!Robot.collectorWrists.getState()){ 
+    	if(Robot.clawOpenOnElevMove && !Robot.collectorWrists.getState()){ 
     		Robot.collectorWrists.open();
     		youHaveOpenedTheWrists = true;
     	}

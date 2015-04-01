@@ -59,6 +59,8 @@ public class Robot extends IterativeRobot {
     public static double turnToAutoTime;
     public static float turnToAutoSpeed;
     public static double binLiftTime;
+    public static boolean clawOpenOnElevMove;
+    public static boolean clawCloseOnElevMove;
 
     CameraServer server;
     Command autonomousCommand;
@@ -136,6 +138,8 @@ public class Robot extends IterativeRobot {
     	turnToAutoTime = prefs.getDouble("timeToTurnToAutoZone", 1.0);
     	turnToAutoSpeed = prefs.getFloat("speedToTurnToAutoZone", 0.5f);
     	binLiftTime = prefs.getDouble("timeToLiftBin", 1.0);
+    	clawOpenOnElevMove = prefs.getBoolean("clawOpenALot", true);
+    	clawCloseOnElevMove = prefs.getBoolean("clawCloseALot", true);
     	prefs.save();
     	
         // schedule the autonomous command (example)
