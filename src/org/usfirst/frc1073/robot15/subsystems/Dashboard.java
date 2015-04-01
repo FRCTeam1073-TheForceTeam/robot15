@@ -79,7 +79,7 @@ public class Dashboard extends Subsystem {
 		SmartDashboard.putNumber("Battery", DriverStation.getInstance().getBatteryVoltage());
 		SmartDashboard.putBoolean("Claw", Robot.binCollector.getState());
 		SmartDashboard.putBoolean("Wrist", Robot.collectorWrists.getState());
-		SmartDashboard.putNumber("Elevator Level", Robot.elevator.getPistonState());
+		SmartDashboard.putNumber("Elevator Level", Robot.elevator.elevatorState());
 		SmartDashboard.putNumber("Current", pdp.getTotalCurrent());
 	}
 	
